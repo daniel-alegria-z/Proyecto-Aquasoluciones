@@ -1,67 +1,73 @@
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: rgb(255, 255, 255)000;
-      color: white;
-      padding: 20px 0;
-      margin-bottom: -60px;
-    }
-    
-    .cuadrologo {
-      margin-left: 610px;
-      margin-right: 20px;
-      margin-top: 20px;
-      background-color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      width: 300px; /* Tamaño logo */
-      height: 60px;
-    }
-    .logo {
-      background-color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+/* Importa tipografía desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
 
-    }
-    .logo img {
-      width: 300px; /* Tamaño logo */
-      height: 60px;
-    }
+:root {
+  --color-accent: #007CF0;
+  --font-base: 'Montserrat', sans-serif;
+}
 
 
-    nav {
-    background-color: #ffffff;
-    font-family: 'Courier New', Courier, monospace;
+/* HEADER */
+header {
+  overflow: hidden;
+  height: 96%;
+}
 
-    }
-    ul.menu li{
-      padding-bottom: 100px;
-    }
-    nav ul {
-      margin: 30px;
-      padding: 30px;
-      text-align: center;
+/* Contenedor de logo + menú */
+.cuadrologo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 40px;
+  position: absolute;
+  width: 100%;
 
-    }
-    nav ul li {
-      display: inline;
-      margin: 0 110px;
-      margin-left: 140px;
-    }
-    nav ul li a {
-      color: rgb(0, 0, 0);
-      text-decoration: none;
-      font-size: 18px;
-    }
-    nav ul li a:hover {
-      color: #0210d4;
-    }
+}
+
+/* Logo */
+.logo img {
+  margin-top: 17px;
+  width: 270px;
+  transition: transform 0.3s ease;
+}
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+
+/* Menú */
+nav ul.menu {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin-left: 550px;
+  margin-top: 25px;
+}
+nav ul.menu li a {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000000;
+  position: relative;
+  transition: color 0.3s ease;
+}
+nav ul.menu li a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -6px;
+  width: 0; height: 3px;
+  background: var(--color-accent);
+  transition: width 0.3s ease;
+}
+nav ul.menu li a:hover::after,
+nav ul.menu li a.active::after {
+  width: 100%;
+}
+nav ul.menu li a:hover {
+  color: var(--color-accent);
+}
+
+
   
 /******** imagen que carga al inicio  *******/ 
   .Cargarpag {
@@ -98,7 +104,7 @@
   .contenedor {
     width: 100%;
     height: 550px;
-    margin: 50px auto;
+    margin: 83px auto;
     position: relative;
     background: url(../imagenes/aqua.jpeg);
     background-repeat: no-repeat;
@@ -106,7 +112,6 @@
     background-position:center;
   }
 
-  
   .contenedor-acercade{
     width: auto;
     height: 550px;
@@ -122,6 +127,7 @@
     display: flex;
     width: 100%;
     overflow: hidden;
+    height: 450px;
   }
 
   .apartado {
@@ -129,7 +135,7 @@
     text-align: center;
     width: 100%;
     min-width: 300px;
-    margin-top: 100px;
+    margin-top: 90px;
     margin-right: 10px;
     transition: transform 0.5s ease;
     direction: rtl;
