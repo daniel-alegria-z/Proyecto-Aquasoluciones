@@ -5,7 +5,7 @@ class ConexionBD {
         $bdname = getenv("PGDATABASE");
         $username = getenv("PGUSER");
         $pasword = getenv("PGPASSWORD");
-        $port = "5432";
+        $port = getenv("PGPORT");
 
         try {
             $conn = new PDO("pgsql:host=$host;port=$port;dbname=$bdname", $username, $pasword);
