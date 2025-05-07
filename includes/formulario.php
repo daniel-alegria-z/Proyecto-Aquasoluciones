@@ -9,9 +9,15 @@
     <link rel="stylesheet" href="assets/css/disenore.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="assets/js/dise.js"></script>
     <title>Registro de datos</title>
 </head>
 <body>
+    <div class="Cargarpag">
+        <div class="cargar"><img src="assets/imagenes/loading.gif" alt="#"/></div>
+    </div>
+
+
     <header class="header2">
         <div class="cuadrologor">
             <div class="logor">
