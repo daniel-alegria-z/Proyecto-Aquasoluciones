@@ -5,6 +5,7 @@ class ConexionBD {
         $bdname = "railway";
         $username = "postgres";
         $pasword = "CCCqUGwkjnhnYsnUsYVHApiiYwYfdeSf";
+        $port = "5432"
 
         try {
             $conn = new PDO("pgsql:host=$host;port=$port;dbname=$bdname", $username, $pasword);
