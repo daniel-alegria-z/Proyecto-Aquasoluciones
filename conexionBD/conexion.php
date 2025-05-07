@@ -1,11 +1,10 @@
 <?php
 class ConexionBD {
     function conexionBD() {
-        $host     = getenv("PGHOST");
-        $port     = getenv("PGPORT");
-        $bdname   = getenv("PGDATABASE");
-        $username = getenv("PGUSER");
-        $pasword  = getenv("PGPASSWORD");
+        $host = "postgres.railway.internal";
+        $bdname = "railway";
+        $username = "postgres";
+        $pasword = "CCCqUGwkjnhnYsnUsYVHApiiYwYfdeSf";
 
         try {
             $conn = new PDO("pgsql:host=$host;port=$port;dbname=$bdname", $username, $pasword);
