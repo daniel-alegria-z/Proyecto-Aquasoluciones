@@ -1,7 +1,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/estilos.css">
-<link rel="stylesheet" href="css/disenore.css">
+<link rel="stylesheet" href="assets/css/estilos.css">
+<link rel="stylesheet" href="assets/css/disenore.css">
  
  
  <!--final formulario-->
