@@ -1,0 +1,107 @@
+
+form {
+    text-align: center;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 200px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    margin-left: 22%;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+#miFormulario{
+    margin-left: 25%
+}
+
+.combo {
+    margin-bottom: 20px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    font-size: 16px;
+
+    margin-bottom: 20px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    width: 50%;
+    margin-left: 25%;
+}
+
+#opciones{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  input[type="text"] {
+    color: #000000;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    
+    margin-bottom: 5px;
+    margin-left: 27%;
+    display: block;
+    width: 40%;
+}
+
+input[type="date"] {
+    width: 200px; 
+    height: 30px;
+
+  }
+
+  
+input[type="number"] {
+    color: #000000;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    
+    margin-bottom: 5px;
+    margin-left: 27%;
+    display: block;
+    width: 40%;
+}
+
+input[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    
+    margin-bottom: 20px;
+    margin-left: 30%;
+    display: block;
+    width: 40%;
+    box-sizing: border-box;
+}
+
+input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+
+textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  height: 70px;
+}

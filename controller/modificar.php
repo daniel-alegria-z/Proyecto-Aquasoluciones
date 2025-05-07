@@ -1,0 +1,728 @@
+<?php
+
+require '/var/www/html/conexionBD/conexion.php';
+
+// Crear una instancia de la clase ConexionBD
+$conexionBD = new ConexionBD();
+$dbconn = $conexionBD->conexionBD();
+
+if (!$dbconn) {
+    echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
+} else {
+
+    switch ($opcion) {
+        case 1: // Tabla Empleados
+            echo '<form id="miFormulario" action="" method="post">';
+            echo '<h2 class="text-2xl font-bold text-black-600 mb-4">Modificar datos de la tabla Empleados</h2>';
+        
+            // Crear una instancia de la clase ConexionBD
+            $conexionBD = new ConexionBD();
+            $dbconn = $conexionBD->conexionBD(); // Obtener la conexión
+        
+            if (!$dbconn) {
+                echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
+            } else {
+                // Consulta para obtener los IDs registrados
+                $sql = "SELECT id, nombre, apellido FROM empleado";
+                $stmt = $dbconn->prepare($sql); // Preparar la consulta
+        
+                if (!$stmt->execute()) {
+                    echo "Error al obtener los datos.";
+                } else {
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtener todos los resultados
+                    echo '<br>';
+                    echo '<label>Seleccione el ID del registro a modificar: </label>';
+                    echo '<select name="id" id="id_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+                    echo '<option value="selec">Seleccione...</option>';
+                    foreach ($result as $row) {
+                        echo '<option value="' . $row['id'] . '">' . $row['id'] . ' - ' . $row['nombre'] . ' ' . $row['apellido'] . '</option>';
+                    }
+                    echo '</select>';
+                }
+            }
+            
+            echo '<br>';
+            echo '<input type="hidden" id="tabla_combobox" value="empleado">'; // Tabla seleccionada
+            echo '<label>Seleccione el campo a modificar: </label>';
+            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+            echo '<option value="selec">Seleccione...</option>';
+            echo '<option value="cedula">Cédula</option>';
+            echo '<option value="nombre">Nombre</option>';
+            echo '<option value="apellido">Apellido</option>';
+            echo '<option value="celular">Celular</option>';
+            echo '<option value="email">Email</option>';
+            echo '<option value="cargo">Cargo</option>';
+            echo '</select>';
+        
+            echo '<br>';
+            echo '<label>Nuevo valor: </label>';
+            echo '<input type="text" name="valor" id="nuevo_valor" class="input-estilo" required>';
+
+            echo '<br><br>';
+            echo '<input type="submit" value="Modificar" name="modificar1">';
+            echo '</form>';
+            break;
+            
+
+        case 2: // Tabla Clientes
+            echo '<form id="miFormulario" action="" method="post">';
+            echo '<h2 class="text-2xl font-bold text-black-600 mb-4">Modificar datos de la tabla Clientes</h2>';
+
+            // Crear una instancia de la clase ConexionBD
+            $conexionBD = new ConexionBD();
+            $dbconn = $conexionBD->conexionBD(); // Obtener la conexión
+        
+            if (!$dbconn) {
+                echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
+            } else {
+                // Consulta para obtener los IDs registrados
+                $sql = "SELECT id, nombre_completo FROM cliente";
+                $stmt = $dbconn->prepare($sql); // Preparar la consulta
+
+                if (!$stmt->execute()) {
+                    echo "Error al obtener los datos.";
+                } else {
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtener todos los resultados
+                    echo '<br>';
+        
+                        echo '<label class="block text-black text-sm font-bold mb-2" for="id">Seleccione el ID del registro a modificar</label>';
+                        echo '<select name="id" id="id_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+                        echo '<option value="selec">Seleccione...</option>';
+                        foreach ($result as $row) {
+                            echo '<option value="' . $row['id'] . '">' . $row['id'] . ' - ' . $row['nombre_completo'] . '</option>';
+                        }
+                        echo '</select>';
+                        }
+            }
+
+            echo '<br>';
+            echo '<input type="hidden" id="tabla_combobox" value="cliente">'; // Tabla seleccionada
+            echo '<label>Seleccione el campo a modificar: </label>';
+            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+            echo '<option value="selec">Seleccione...</option>';
+            echo '<option value="cedula">Cédula</option>';
+            echo '<option value="nombre_completo">Nombre Completo</option>';
+            echo '<option value="direccion">Dirección</option>';
+            echo '<option value="celular">Celular</option>';
+            echo '</select>';
+
+            echo '<br>';
+            echo '<label>Nuevo valor: </label>';
+            echo '<input type="text" name="valor" id="nuevo_valor" class="input-estilo" required>';
+
+            
+            echo '<br><br>';
+            echo '<input type="submit" value="Modificar" name="modificar2">';
+            echo '</form>';
+
+            break;
+
+        case 3: // Tabla Contratos Empleado
+            echo '<form id="miFormulario" action="" method="post">';
+            echo '<h2 class="text-2xl font-bold text-black-600 mb-4">Modificar datos de la tabla Contratos Empleado</h2>';
+            
+            // Crear una instancia de la clase ConexionBD
+            $conexionBD = new ConexionBD();
+            $dbconn = $conexionBD->conexionBD(); // Obtener la conexión
+        
+            if (!$dbconn) {
+                echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
+            } else {
+                // Consulta para obtener los IDs registrados
+                $sql = "SELECT id_contrato, id_empleado FROM contrato_empleado";
+                $stmt = $dbconn->prepare($sql); // Preparar la consulta
+
+                if (!$stmt->execute()) {
+                    echo "Error al obtener los datos.";
+                } else {
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtener todos los resultados
+                    echo '<br>';
+        
+                        echo '<label class="block text-black text-sm font-bold mb-2" for="id">Seleccione el ID del contrato a modificar</label>';
+                        echo '<select name="id" id="id_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+                        echo '<option value="selec">Seleccione...</option>';
+                        foreach ($result as $row) {
+                            echo '<option value="' . $row['id_contrato'] . '">' . 'ID: ' . $row['id_contrato'] . ' - Empleado con ID: ' . $row['id_empleado'] . '</option>';
+                        }
+                        echo '</select>';
+                        }
+            }
+
+            echo '<br>';
+            echo '<input type="hidden" id="tabla_combobox" value="contrato_empleado">'; // Tabla seleccionada
+            echo '<label>Seleccione el campo a modificar: </label>';
+            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+            echo '<option value="selec">Seleccione...</option>';
+            echo '<option value="id_empleado">ID Empleado</option>';
+            echo '<option value="tipo_contrato">Tipo de Contrato</option>';
+            echo '<option value="fecha_inicio">Fecha de Inicio</option>';
+            echo '<option value="fecha_fin">Fecha de Fin</option>';
+            echo '<option value="sueldo">Sueldo</option>';
+            echo '</select>';
+
+            echo '<br>';
+            echo '<label>Nuevo valor: </label>';
+            echo '<input type="text" name="valor" id="nuevo_valor" class="input-estilo" required>';
+
+
+            echo '<br><br>';
+            echo '<input type="submit" value="Modificar" name="modificar3">';
+
+            echo '</form>';
+
+            break;
+        
+        case 4: // Tabla Contratos Servicio
+            echo '<form id="miFormulario" action="" method="post">';
+            echo '<h2 class="text-2xl font-bold text-black-600 mb-4">Modificar datos de la tabla Contratos Servicio</h2>';
+            
+            // Crear una instancia de la clase ConexionBD
+            $conexionBD = new ConexionBD();
+            $dbconn = $conexionBD->conexionBD(); // Obtener la conexión
+        
+            if (!$dbconn) {
+                echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
+            } else {
+                // Consulta para obtener los IDs registrados
+                $sql = "SELECT id_servicio, id_cliente FROM contrato_servicio";
+                $stmt = $dbconn->prepare($sql); // Preparar la consulta
+
+                if (!$stmt->execute()) {
+                    echo "Error al obtener los datos.";
+                } else {
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtener todos los resultados
+                    echo '<br>';
+        
+                        echo '<label class="block text-black text-sm font-bold mb-2" for="id">Seleccione el ID del contrato a modificar</label>';
+                        echo '<select name="id" id="id_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+                        echo '<option value="selec">Seleccione...</option>';
+                        foreach ($result as $row) {
+                            echo '<option value="' . $row['id_servicio'] . '">' . 'ID: ' . $row['id_servicio'] . ' - Cliente con ID: ' . $row['id_cliente'] . '</option>';
+                        }
+                        echo '</select>';
+                        }
+            }
+
+            echo '<br>';
+            echo '<input type="hidden" id="tabla_combobox" value="contrato_servicio">'; // Tabla seleccionada
+            echo '<label>Seleccione el campo a modificar: </label>';
+            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+            echo '<option value="selec">Seleccione...</option>';
+            echo '<option value="id_cliente">ID Cliente</option>';
+            echo '<option value="tipo_servicio">Tipo de Servicio</option>';
+            echo '<option value="fecha_inicio">Fecha de Inicio</option>';
+            echo '<option value="fecha_fin">Fecha de Fin</option>';
+            echo '</select>';
+            
+            echo '<br>';
+            echo '<label>Nuevo valor: </label>';
+            echo '<input type="text" name="valor" id="nuevo_valor" class="input-estilo" required>';
+
+            echo '<br><br>';
+            echo '<input type="submit" value="Modificar" name="modificar4">';
+            echo '</form>';
+
+            break;
+        case 5: // Tabla Medidores
+            echo '<form id="miFormulario" action="" method="post">';
+            echo '<h2 class="text-2xl font-bold text-black-600 mb-4">Modificar datos de la tabla Medidores</h2>';
+            
+            // Crear una instancia de la clase ConexionBD
+            $conexionBD = new ConexionBD();
+            $dbconn = $conexionBD->conexionBD(); // Obtener la conexión
+        
+            if (!$dbconn) {
+                echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
+            } else {
+                // Consulta para obtener los IDs registrados
+                $sql = "SELECT id_medidor, id_cliente FROM medidor";
+                $stmt = $dbconn->prepare($sql); // Preparar la consulta
+
+                if (!$stmt->execute()) {
+                    echo "Error al obtener los datos.";
+                } else {
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtener todos los resultados
+                    echo '<br>';
+        
+                        echo '<label class="block text-black text-sm font-bold mb-2" for="id">Seleccione el ID del medidor a modificar</label>';
+                        echo '<select name="id" id="id_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+                        echo '<option value="selec">Seleccione...</option>';
+                        foreach ($result as $row) {
+                            echo '<option value="' . $row['id_medidor'] . '">' . 'ID: ' . $row['id_medidor'] . ' - Cliente con ID: ' . $row['id_cliente'] . '</option>';
+                        }
+                        echo '</select>';
+                        }
+            }
+
+            echo '<br>';
+            echo '<input type="hidden" id="tabla_combobox" value="medidor">'; // Tabla seleccionada
+
+            echo '<label class="block text-black text-sm font-bold mb-2" for="campo">Seleccione el campo a modificar</label>';
+            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+            echo '<option value="selec">Seleccione...</option>';
+            echo '<option value="id_cliente">ID Cliente</option>';
+            echo '<option value="numero_serie">Número de Serie</option>';
+            echo '</select>';
+                
+
+            echo '<br>';
+            echo '<label>Nuevo valor: </label>';
+            echo '<input type="text" name="valor" id="nuevo_valor" class="input-estilo" required>';
+            
+            echo '<br><br>';
+            echo '<input type="submit" value="Modificar" name="modificar5">';
+            echo '</form>';
+
+            break;
+
+        case 6: // Tabla Lectura Medidores
+            echo '<form id="miFormulario" action="" method="post">';
+            echo '<h2 class="text-2xl font-bold text-black-600 mb-4">Modificar datos de la tabla Lectura Medidores</h2>';
+            
+            // Crear una instancia de la clase ConexionBD
+            $conexionBD = new ConexionBD();
+            $dbconn = $conexionBD->conexionBD(); // Obtener la conexión
+        
+            if (!$dbconn) {
+                echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
+            } else {
+                // Consulta para obtener los IDs registrados
+                $sql = "SELECT id_lectura, id_medidor FROM lectura_medidor";
+                $stmt = $dbconn->prepare($sql); // Preparar la consulta
+
+                if (!$stmt->execute()) {
+                    echo "Error al obtener los datos.";
+                } else {
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtener todos los resultados
+                    echo '<br>';
+        
+                        echo '<label class="block text-black text-sm font-bold mb-2" for="id">Seleccione el ID de la lectura a modificar</label>';
+                        echo '<select name="id" id="id_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+                        echo '<option value="selec">Seleccione...</option>';
+                        foreach ($result as $row) {
+                            echo '<option value="' . $row['id_lectura'] . '">' . 'ID: ' . $row['id_lectura'] . ' - Medidor con ID: ' . $row['id_medidor'] . '</option>';
+                        }
+                        echo '</select>';
+                        }
+            }
+
+            echo '<br>';
+            echo '<input type="hidden" id="tabla_combobox" value="lectura_medidor">'; // Tabla seleccionada
+
+            echo '<label>Seleccione el campo a modificar: </label>';
+            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+            echo '<option value="selec">Seleccione...</option>';
+            echo '<option value="id_medidor">ID Medidor</option>';
+            echo '<option value="fecha_lectura">Fecha de Lectura</option>';
+            echo '<option value="lectura_actual">Lectura Actual</option>';
+            echo '<option value="lectura_anterior">Lectura Anterior</option>';
+            echo '</select>';
+
+            echo '<br>';
+            echo '<label class="block text-black text-sm font-bold mb-2" for="valor">Nuevo valor</label>';
+            echo '<input type="text" name="valor" id="nuevo_valor" class="input-estilo" required>';
+        
+            echo '<br><br>';
+            echo '<input type="submit" value="Modificar" name="modificar6">';
+            echo '</form>';
+
+            break;
+
+        case 7: // Tabla Facturas
+            echo '<form id="miFormulario" action="" method="post">';
+            echo '<h2 class="text-2xl font-bold text-black-600 mb-4">Modificar datos de la tabla Facturas</h2>';
+            
+            // Crear una instancia de la clase ConexionBD
+            $conexionBD = new ConexionBD();
+            $dbconn = $conexionBD->conexionBD(); // Obtener la conexión
+        
+            if (!$dbconn) {
+                echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
+            } else {
+                // Consulta para obtener los IDs registrados
+                $sql = "SELECT id_factura, id_cliente FROM factura";
+                $stmt = $dbconn->prepare($sql); // Preparar la consulta
+
+                if (!$stmt->execute()) {
+                    echo "Error al obtener los datos.";
+                } else {
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtener todos los resultados
+                    echo '<br>';
+        
+                        echo '<label class="block text-black text-sm font-bold mb-2" for="id">Seleccione el ID de la factura a modificar</label>';
+                        echo '<select name="id" id="id_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+                        echo '<option value="selec">Seleccione...</option>';
+                        foreach ($result as $row) {
+                            echo '<option value="' . $row['id_factura'] . '">' . 'ID: ' . $row['id_factura'] . ' - Cliente con ID: ' . $row['id_cliente'] . '</option>';
+                        }
+                        echo '</select>';
+                        }
+            }
+
+            echo '<br>';
+            echo '<input type="hidden" id="tabla_combobox" value="factura">'; // Tabla seleccionada
+            
+
+            echo '<label>Seleccione el campo a modificar: </label>';
+            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+            echo '<option value="selec">Seleccione...</option>';
+            echo '<option value="id_cliente">ID Cliente</option>';
+            echo '<option value="fecha_aviso">Fecha de Aviso</option>';
+            echo '<option value="fecha_vencimiento">Fecha de Vencimiento</option>';
+            echo '<option value="total">Total</option>';
+            echo '</select>';
+
+            echo '<br>';
+            echo '<label>Nuevo valor: </label>';
+            echo '<input type="text" name="valor" id="nuevo_valor" class="input-estilo" required>';
+            
+            echo '<br><br>';
+            echo '<input type="submit" value="Modificar" name="modificar7">';
+            echo '</form>';
+
+            break;
+        
+        case 8: // Tabla Pagos
+            echo '<form id="miFormulario" action="" method="post">';
+            echo '<h2 class="text-2xl font-bold text-black-600 mb-4">Modificar datos de la tabla Pagos</h2>';
+            
+            // Crear una instancia de la clase ConexionBD
+            $conexionBD = new ConexionBD();
+            $dbconn = $conexionBD->conexionBD(); // Obtener la conexión
+        
+            if (!$dbconn) {
+                echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
+            } else {
+                // Consulta para obtener los IDs registrados
+                $sql = "SELECT id_pago, id_factura FROM pagos";
+                $stmt = $dbconn->prepare($sql); // Preparar la consulta
+
+                if (!$stmt->execute()) {
+                    echo "Error al obtener los datos.";
+                } else {
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtener todos los resultados
+                    echo '<br>';
+        
+                        echo '<label class="block text-black text-sm font-bold mb-2" for="id">Seleccione el ID del pago a modificar</label>';
+                        echo '<select name="id" id="id_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+                        echo '<option value="selec">Seleccione...</option>';
+                        foreach ($result as $row) {
+                            echo '<option value="' . $row['id_pago'] . '">' . 'ID: ' . $row['id_pago'] . ' - Factura con ID: ' . $row['id_factura'] . '</option>';
+                        }
+                        echo '</select>';
+                        }
+            }
+
+            echo '<br>';
+            echo '<input type="hidden" id="tabla_combobox" value="pagos">'; // Tabla seleccionada
+            
+
+            echo '<label>Seleccione el campo a modificar: </label>';
+            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+            echo '<option value="selec">Seleccione...</option>';
+            echo '<option value="id_factura">ID Factura</option>';
+            echo '<option value="fecha">Fecha</option>';
+            echo '<option value="monto">Monto</option>';
+            echo '</select>';
+        
+            echo '<br>';
+            echo '<label>Nuevo valor: </label>';
+            echo '<input type="text" name="valor" id="nuevo_valor" class="input-estilo" required>';
+        
+            echo '<br><br>';
+            echo '<input type="submit" value="Modificar" name="modificar8">';
+            echo '</form>';
+
+            break;
+        
+        case 9: // Tabla Reportes de Servicio
+            echo '<form id="miFormulario" action="" method="post">';
+            echo '<h2 class="text-2xl font-bold text-black-600 mb-4">Modificar datos de la tabla Reportes de Servicio</h2>';
+            
+            // Crear una instancia de la clase ConexionBD
+            $conexionBD = new ConexionBD();
+            $dbconn = $conexionBD->conexionBD(); // Obtener la conexión
+        
+            if (!$dbconn) {
+                echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
+            } else {
+                // Consulta para obtener los IDs registrados
+                $sql = "SELECT id_reporte, id_cliente FROM reporte_servicio";
+                $stmt = $dbconn->prepare($sql); // Preparar la consulta
+
+                if (!$stmt->execute()) {
+                    echo "Error al obtener los datos.";
+                } else {
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtener todos los resultados
+                    echo '<br>';
+        
+                        echo '<label class="block text-black text-sm font-bold mb-2" for="id">Seleccione el ID del reporte a modificar</label>';
+                        echo '<select name="id" id="id_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+                        echo '<option value="selec">Seleccione...</option>';
+                        foreach ($result as $row) {
+                            echo '<option value="' . $row['id_reporte'] . '">' . 'ID: ' . $row['id_reporte'] . ' - Cliente con ID: ' . $row['id_cliente'] . '</option>';
+                        }
+                        echo '</select>';
+                        }
+            }
+
+
+            echo '<br>';
+            echo '<input type="hidden" id="tabla_combobox" value="reporte_servicio">'; // Tabla seleccionada
+            
+
+            echo '<label>Seleccione el campo a modificar: </label>';
+            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+            echo '<option value="selec">Seleccione...</option>';
+            echo '<option value="id_cliente">ID Cliente</option>';
+            echo '<option value="problema">Problema Reportado</option>';
+            echo '<option value="fecha_reporte">Fecha de Reporte</option>';
+            echo '<option value="estado">Estado</option>';
+            echo '</select>';
+
+            echo '<br>';
+            echo '<label>Nuevo valor: </label>';
+            echo '<input type="text" name="valor" id="nuevo_valor" class="input-estilo" required>';
+        
+            echo '<br><br>';
+            echo '<input type="submit" value="Modificar" name="modificar9">';
+        echo '</form>';
+
+            break;
+    }
+
+    // Procesar la modificación
+    if (isset($_POST['modificar1']) || isset($_POST['modificar2']) || isset($_POST['modificar3']) || isset($_POST['modificar4']) || isset($_POST['modificar5']) || isset($_POST['modificar6']) || isset($_POST['modificar7'])|| isset($_POST['modificar8']) || isset($_POST['modificar9'])) {
+        
+        $tabla = '';
+        $campo = $_POST['campo'];
+        $id = $_POST['id'];
+        $valor = $_POST['valor'];
+        $columna_id = ''; // Columna identificadora
+    
+        // Determinar la tabla y la columna identificadora según el botón presionado
+        if (isset($_POST['modificar1'])) {
+            $tabla = 'empleado';
+            $columna_id = 'id';
+        }
+        if (isset($_POST['modificar2'])) {
+            $tabla = 'cliente';
+            $columna_id = 'id';
+        }
+        if (isset($_POST['modificar3'])) {
+            $tabla = 'contrato_empleado';
+            $columna_id = 'id_contrato';
+        }
+        if (isset($_POST['modificar4'])) {
+            $tabla = 'contrato_servicio';
+            $columna_id = 'id_servicio';
+        }
+        if (isset($_POST['modificar5'])) {
+            $tabla = 'medidor';
+            $columna_id = 'id_medidor';
+        }
+        if (isset($_POST['modificar6'])) {
+            $tabla = 'lectura_medidor';
+            $columna_id = 'id_lectura';
+        }
+        if (isset($_POST['modificar7'])) {
+            $tabla = 'factura';
+            $columna_id = 'id_factura';
+        }
+        if (isset($_POST['modificar8'])) {
+            $tabla = 'pagos';
+            $columna_id = 'id_pago';
+        }
+        if (isset($_POST['modificar9'])) {
+            $tabla = 'reporte_servicio';
+            $columna_id = 'id_reporte';
+        }
+
+    
+        // Crear una instancia de la clase ConexionBD
+        $conexionBD = new ConexionBD();
+        $dbconn = $conexionBD->conexionBD(); // Obtener la conexión
+
+        if (!$dbconn) {
+            echo '<form id="miFormulario" action="" method="post">';
+            echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
+            echo '</form>';
+        } else {
+            // Escapar los valores para evitar inyecciones SQL
+            $campo = htmlspecialchars($campo, ENT_QUOTES, 'UTF-8');
+            $valor = htmlspecialchars($valor, ENT_QUOTES, 'UTF-8');
+            $id = htmlspecialchars($id, ENT_QUOTES, 'UTF-8');
+
+            // Construir y preparar la consulta
+            $sql = "UPDATE $tabla SET $campo = :valor WHERE $columna_id = :id";
+            $stmt = $dbconn->prepare($sql); // Preparar la consulta
+
+            // Vincular los parámetros
+            $stmt->bindParam(':valor', $valor, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+            // Ejecutar la consulta
+            if (!$stmt->execute()) {
+                echo '<form id="miFormulario" action="" method="post">';
+                echo '<h2 class="text-2xl font-bold text-black-600 mb-4">Error al modificar el registro. Verifique los datos ingresados.</h2>';
+                echo '</form>';
+            } else {
+                echo '<form id="miFormulario" action="" method="post">';
+                echo '<h2 class="text-2xl font-bold text-black-600 mb-4">El registro se modificó exitosamente.</h2>';
+                echo '</form>';
+            }
+        }
+    }
+}
+
+?>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+    <style>
+
+.pesos {
+    margin-left: 222px;
+    margin-bottom: 5px;
+}
+
+.input-estilo {
+    display: block;
+    margin: 0 auto; /* Centrar horizontalmente */
+    margin-left: 2px; /* Centrar horizontalmente */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    appearance: none;
+    border: 1px solid #2563eb; /* Azul */
+    border-radius: 0.375rem; /* Bordes redondeados */
+    width: 100%; /* Ancho completo */
+    padding: 0.5rem 0.75rem; /* Espaciado interno */
+    color: #374151; /* Texto gris oscuro */
+    font-size: 1rem; /* Tamaño de fuente */
+    line-height: 1.5; /* Altura de línea */
+    outline: none; /* Sin borde al enfocar */
+    transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    
+}
+
+.input-estilo:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* Sombra azul al enfocar */
+    border-color: #2563eb; /* Borde azul al enfocar */
+}
+
+.input-estilo-date {
+    display: block;
+    margin: 0 auto; /* Centrar horizontalmente */
+    margin-left: 280px; /* Centrar horizontalmente */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    appearance: none;
+    border: 1px solid #2563eb; /* Azul */
+    border-radius: 0.375rem; /* Bordes redondeados */
+    width: 100%; /* Ancho completo */
+    padding: 0.5rem 0.75rem; /* Espaciado interno */
+    color: #374151; /* Texto gris oscuro */
+    font-size: 1rem; /* Tamaño de fuente */
+    line-height: 1.5; /* Altura de línea */
+    outline: none; /* Sin borde al enfocar */
+    transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    
+}
+
+.input-estilo-date:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* Sombra azul al enfocar */
+    border-color: #2563eb; /* Borde azul al enfocar */
+}
+
+.input-estilo-pro {
+    display: block;
+    margin: 0 auto; /* Centrar horizontalmente */
+    margin-left: 0px; /* Centrar horizontalmente */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    appearance: none;
+    border: 1px solid #2563eb; /* Azul */
+    border-radius: 0.375rem; /* Bordes redondeados */
+    width: 100%; /* Ancho completo */
+    padding: 0.5rem 0.75rem; /* Espaciado interno */
+    color: #374151; /* Texto gris oscuro */
+    font-size: 1rem; /* Tamaño de fuente */
+    line-height: 1.5; /* Altura de línea */
+    outline: none; /* Sin borde al enfocar */
+    transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    
+}
+
+.input-estilo-pro:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* Sombra azul al enfocar */
+    border-color: #2563eb; /* Borde azul al enfocar */
+}
+
+
+</style>
+<script>
+    function cargarValorActual() {
+        // Obtener el ID seleccionado, el campo seleccionado y la tabla seleccionada
+        var idSeleccionado = document.getElementById('id_combobox').value;
+        var campoSeleccionado = document.getElementById('campo_combobox').value;
+        var tablaSeleccionada = document.getElementById('tabla_combobox').value; // Nuevo: tabla seleccionada
+
+        // Determinar la columna identificadora según la tabla
+        var columnaId;
+        switch (tablaSeleccionada) {
+            case 'empleado':
+                columnaId = 'id';
+                break;
+            case 'cliente':
+                columnaId = 'id';
+                break;
+            case 'contrato_empleado':
+                columnaId = 'id_contrato';
+                break;
+            case 'contrato_servicio':
+                columnaId = 'id_servicio';
+                break;
+            case 'medidor':
+                columnaId = 'id_medidor';
+                break;
+            case 'lectura_medidor':
+                columnaId = 'id_lectura';
+                break;
+            case 'factura':
+                columnaId = 'id_factura';
+                break;
+            case 'pagos':
+                columnaId = 'id_pago';
+                break;
+            case 'reporte_servicio':
+                columnaId = 'id_reporte';
+                break;
+            default:
+                columnaId = 'id'; // Valor predeterminado
+        }
+
+        // Realizar una solicitud AJAX al servidor
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'obtener_valor_actual.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Actualizar el input con el valor recibido
+                document.getElementById('nuevo_valor').value = xhr.responseText;
+            }
+        };
+
+        // Enviar el ID, el campo y la tabla seleccionados al servidor
+        xhr.send('id=' + idSeleccionado + '&campo=' + campoSeleccionado + '&tabla=' + tablaSeleccionada + '&columna_id=' + columnaId);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Seleccionar todos los inputs con la clase "input-estilo"
+        var inputs = document.querySelectorAll('.input-estilo');
+        
+        // Iterar sobre cada input y aplicar el margen izquierdo
+        inputs.forEach(function(input) {
+            input.style.marginLeft = '30%'; // Ajusta el margen izquierdo
+        });
+    });
+
+    
+</script>
