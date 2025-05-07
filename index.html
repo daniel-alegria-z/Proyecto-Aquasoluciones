@@ -5,62 +5,67 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AquaSoluciones</title>
   <link rel="stylesheet" href="assets/css/estilos.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="assets/js/abririmg.js"></script>
+  <link rel="stylesheet" href="assets/css/acerca.css">
 </head>
 
 <body>
   <div class="Cargarpag">
     <div class="cargar"><img src="assets/imagenes/loading.gif" alt="#"/></div>
- </div>
+  </div>
 
   <header>
     <div class="cuadrologo">
-      <div class="logo">
-        <a href="index.html"><img src="assets/imagenes/logo.jpg" alt="#" /></a>
+      <div class="head1">
+        <a href="index.html" class="logo">
+          <img src="assets/imagenes/logo2.png" alt="Logo AquaSoluciones">
+        </a>
       </div>
-    </div>
-      <div>
+      <div class="head2">
         <nav>
-         <b> <ul class="menu">
-            <li><a href="index.html" class="active">INICIO</a></li>
-            <li><a href="acerca.html">ACERCA DE NOSOTROS</a></li>
-            <li><a href="servicios.html">SERVICIOS</a></li>
-          </ul></b>
+          <ul class="menu">
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="acerca.html">Nosotros</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+          </ul>
         </nav>
       </div>
-      
+    </div>
+    <section class="contenedor">
+      <div class="hero">
+        <div class="carrusel">
+          <div class="apartado">
+            <h1> Aprende a ahorrar agua</h1>
+            <br><br><br>
+              <span>Existen muchas formas de reutilizar agua y no malgastar el líquido <br></span><br>
+              <a class="sabermas" href="https://www.youtube.com/watch?v=TOD_9kWu3bA" target ="_blank">Saber Más</a>
+          </div>
+          <div class="apartado">
+            <h1>Aprende a pagar tu factura</h1>
+            <br><br><br>
+            <span>Puedes salir de tu casa para ir a pagar al punto más cercano o desde la comodidad de tu casa puedes hacer y aquí te enseñamos cómo</span><br>
+            <a class="sabermas" href="https://www.youtube.com/watch?v=HikE0RBkOUk" target ="_blank">Saber más</a>
+          </div>
+          <div class="apartado">
+            <h1> Esta página fue construida por:</h1>
+            <span><br><br>Los estudiantes Daniel Alegría (221036003) y Andrés Cárdenas (221036030) de la Universidad de Nariño</span><br>
+            <h1 ><span id = "fecha"><b>19 de Enero 2024</b></span></h1>
+          </div>
+        </div>
+        <button class="anterior">&#8249;</button>
+        <button class="siguiente">&#8250;</button>
+      </div>
+    </section>
   </header>
 
 
-  <section class="contenedor">
-    <div class="carrusel">
-      <div class="apartado">
-        <h1> Aprende a ahorrar agua</h1>
-        <br><br><br>
-          <span>Existen muchas formas de reutilizar agua y no malgastar el líquido <br></span><br>
-          <a class="sabermas" href="https://www.youtube.com/watch?v=TOD_9kWu3bA" target ="_blank">Saber Más</a>
-      </div>  
-      <div class="apartado">
-        <h1>Aprende a pagar tu factura</h1>
-        <br><br><br>
-        <span>Puedes salir de tu casa para ir a pagar al punto más cercano o desde la comodidad de tu casa puedes hacer y aquí te enseñamos cómo</span><br>
-        <a class="sabermas" href="https://www.youtube.com/watch?v=HikE0RBkOUk" target ="_blank">Saber más</a>
-      </div>
-      <div class="apartado">
-        <h1> Esta página fue construida por:</h1>
-        <span><br><br>Los estudiantes Daniel Alegría (221036003) y Andrés Cárdenas (221036030) de la Universidad de Nariño</span><br>
-        <h1 ><span id = "fecha"><b>19 de Enero 2024</b></span></h1>
-      </div>
-    </div>  
-    <button class="anterior">&#8249;</button>
-    <button class="siguiente">&#8250;</button>
-  </section>
-  
+
+
   <script src="assets/js/dise.js"></script>
 
   <!-- acerca de nosotros -->
@@ -71,7 +76,7 @@
       <a class="leermas" href="acerca.html">Leer más</a>
     </div>
     <div class="imagen">
-      <img src="assets/imagenes/acercade.png" alt="#">
+      <img src="assets/imagenes/acercadenos.jpeg" alt="#">
     </div>
   </div>
 
@@ -80,7 +85,7 @@
   <h2 id="estiloh22" >Nuestras Instalaciones</h2>
   <div class="fila">
     <div class="apartado2">
-      <figure><img src="assets/imagenes/imagen1.jpg" alt="Imagen 1" onclick="abrirImagen(this)"></figure>
+      <figure><img src="assets/imagenes/imagen1.png" alt="Imagen 1" onclick="abrirImagen(this)"></figure>
     </div>
     <div class="apartado2">
       <figure><img src="assets/imagenes/imagen2.jpg" alt="Imagen 2" onclick="abrirImagen(this)"></figure>
@@ -128,9 +133,9 @@
       <div class="redes_sociales">
         <h3>Redes Sociales</h3>
         <ul class="iconos_redes">
-          <li><a href="https://www.facebook.com/empoobando.esp.9" target = "_blank"><i class="fab fa-facebook-f"></i></a></li>
-          <li><a href="https://twitter.com/home" target = "_blank">  <i class="fab fa-twitter"></i></a></li>
-          <li><a href="https://www.instagram.com/explore/tags/empobando/" target = "_blank"><i class="fab fa-instagram"></i></a></li>
+          <li><a  target = "_blank"><i class="fab fa-facebook-f"></i></a></li>
+          <li><a target = "_blank">  <i class="fab fa-twitter"></i></a></li>
+          <li><a target = "_blank"><i class="fab fa-instagram"></i></a></li>
         </ul>
         <p class="p1fo">Adjuntamos las redes
           sociales para que
@@ -145,10 +150,10 @@
         <p  class="p1fo">La página resultante
           surge a partir de la idea
           de realizar una maqueta relacionada con
-          la página oficial de 
+          la página oficial de
           la empresa de tratamiento de aguas
           de la ciudad local y describir sus servicios
-          en la página web. 
+          en la página web.
        </p>
       </div>
       <div class="informacion">
@@ -162,7 +167,7 @@
       <div class="nuestro_diseno">
         <h3>Nuestro Diseño</h3>
         <p  class="p1fo">Para este diseño nos
-          hemos inspirado en plantillas y archivos auxiliares 
+          hemos inspirado en plantillas y archivos auxiliares
           con los que se venian trabajando
           en el transcurso de la carrera
           junto con las investigaciones realizadas
