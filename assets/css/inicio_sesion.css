@@ -1,3 +1,6 @@
+#ht{
+    overflow: hidden;
+}
 
 body{
     background-image: url(../imagenes/642457.jpg);
@@ -249,6 +252,10 @@ main{
 /* Responsive */
 @media screen and (max-width: 1081px) {
 
+    #ht{
+        overflow: auto;
+    }
+
     * {
         box-sizing: border-box;     
     }
@@ -263,7 +270,7 @@ main{
     body{
         max-width: 77%;
         align-items: center;
-        
+        margin-left: 1%
     }
 
     .caja_trasera {

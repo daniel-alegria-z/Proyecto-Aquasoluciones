@@ -12,10 +12,10 @@
     <title>Registro de datos</title>
 </head>
 <body>
-    <header>
-        <div class="cuadrologo">
-            <div class="logo">
-                <a href="index.html"><img src="./imagenes/logo.jpg" alt="#" /></a>
+    <header class="header2">
+        <div class="cuadrologor">
+            <div class="logor">
+                <a href="index.html"><img src="assets/imagenes/logo2.png" alt="#" /></a>
             </div>
         </div>
     </header>
