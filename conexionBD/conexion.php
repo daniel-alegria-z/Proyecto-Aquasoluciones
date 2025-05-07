@@ -1,9 +1,4 @@
 <?php
-echo "HOST: " . getenv("PGHOST") . "<br>";
-echo "PORT: " . getenv("PGPORT") . "<br>";
-echo "DB: " . getenv("PGDATABASE") . "<br>";
-echo "USER: " . getenv("PGUSER") . "<br>";
-echo "PASS: " . getenv("PGPASSWORD") . "<br>";
 class ConexionBD {
     function conexionBD() {
         $host     = getenv("PGHOST");
