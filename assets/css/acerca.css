@@ -23,6 +23,7 @@ header.headera {
   justify-content: space-between;
   align-items: center;
   padding: 0px 40px;
+  position: absolute;
   width: 100%;
 
 }
@@ -47,7 +48,7 @@ nav ul.menua {
   list-style: none;
   display: flex;
   gap: 30px;
-  margin-left: 690px;
+  margin-left: 100%;
   margin-top: 20px;
 }
 
