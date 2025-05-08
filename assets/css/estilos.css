@@ -101,16 +101,17 @@ nav ul.menu li a:hover {
 }
 
 /************     CONTENEDOR     *************/
-  .contenedor {
-    width: 100%;
-    height: 550px;
-    margin: 83px auto;
-    position: relative;
-    background: url(../imagenes/aqua.jpeg);
-    background-repeat: no-repeat;
-    background-size:cover;
-    background-position:center;
-  }
+.contenedor {
+  width: 100%;
+  height: 80%;
+  margin: 83px auto;
+  position: relative; /* en lugar de absolute */
+  background: url(../imagenes/aqua.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 100px;
+  padding-top: 60px;
+}
 
   .contenedor-acercade{
     width: auto;
@@ -143,14 +144,14 @@ nav ul.menu li a:hover {
     flex: 0 0 auto;
     text-align: center;
     width: 100%;
-    min-width: 300px;
-    margin-top: 120px;
-    margin-right: 10px;
+    padding: 40px 20px;
+    margin-top: 60px;
     transition: transform 0.5s ease;
     direction: rtl;
     background: transparent;
+    box-sizing: border-box;
   }
-
+  
   .apartado-acerca {
     flex: 0 0 auto;
     text-align: right;
@@ -167,46 +168,52 @@ nav ul.menu li a:hover {
   .apartado-acerca img{
     border-style:double;
     border-radius: 20px;
-    height: 100%;
-    margin-right: 80px;
-    
+    height: 85%;
+    margin-right: 50px;
+    margin-top: 50px
   }
 
-  .apartado .sabermas {
-    padding: 15px 50px;
-    
-    background-color: #fff;
-    color: #000000bf;
-    font-weight: bold;
-    border-radius: 20px;
-    text-decoration: none;
+  /* Títulos dentro de apartado */
+.apartado h1 {
+  color: #ffffff;
+  font-size: clamp(32px, 6vw, 85px);
+  line-height: 1.2;
+  font-weight: bold;
+  margin: 0 auto 20px;
+  margin-bottom: -25px;
+  direction: ltr;
+}
+
+/* Subtítulo o texto corto */
+.apartado span {
+  color: #bebebe;
+  font-size: clamp(14px, 2.2vw, 18px);
+  font-weight: bold;
+  display: block;
+  margin: -30px auto 30px;
+  padding: 0 20px;
+  line-height: 1.5;
+  direction: ltr;
+}
+
+/* Botón Saber Más */
+.apartado .sabermas {
+  padding: 12px 30px;
+  background-color: #fff;
+  color: #000000bf;
+  font-weight: bold;
+  border-radius: 20px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
 .apartado .sabermas:hover {
-    background-color: rgba(27, 23, 23, 0.875);
-    padding: 25px 55px;
-    border-radius: 40px;
-    color: #0064cf
-}
-
-.apartado h1 {
-    color: #ffffff;
-    font-size: 85px;
-    line-height: 96px;
-    padding-bottom: 0px;
-    font-weight: bold;
-    margin-left: 200px;
-    margin-right: 200px;
-}
-
-.apartado span {
-    line-height: 25px;
-    padding-bottom: 40px;
-    color: #bebebe;
-    font-size: 18px;
-    font-weight: bold;
-    display: block;
-    margin-top: -50px;
+  background-color: rgba(27, 23, 23, 0.875);
+  color: #0064cf;
+  padding: 16px 35px;
+  border-radius: 40px;
 }
 
 #we{
@@ -252,13 +259,15 @@ nav ul.menu li a:hover {
   }
 
   .anterior {
-    left: 700px;
+    left: 55%;
+    transform: translateX(-200px); /* Ajusta según necesidad */
     background-color: rgba(90, 90, 90, 0.87);
     border-radius: 600px;
   }
-
+  
   .siguiente {
-    right: 710px;
+    right: 55%;
+    transform: translateX(200px); /* Ajusta según necesidad */
     background-color: rgba(90, 90, 90, 0.87);
     border-radius: 600px;
   }
@@ -273,11 +282,11 @@ nav ul.menu li a:hover {
      top: 92%;
 }
 .siguiente:hover {
-     right: 710px;
+     right: 55%;
 }
 
 .anterior:hover{
-     left: 700px;
+     left: 55%;
 }
 
 /**********acerca de nosotros ************/
@@ -287,7 +296,7 @@ nav ul.menu li a:hover {
   justify-content: space-between;
   background-color: #ffffff;
   height: 900px;
-  margin-top: -60px
+  margin-top: -120px
 }
 
 .texto, .imagen {
@@ -395,6 +404,7 @@ flex-direction: column;
   text-align: center;
   font-size: 22px;
   margin-top: -120px; 
+  margin-right: 70px;
   font-family:"Homer Simpson UI";
   transition: transform 0.3s ease-in-out;
   text-transform: uppercase;

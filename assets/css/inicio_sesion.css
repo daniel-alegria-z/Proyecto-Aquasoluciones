@@ -2,27 +2,28 @@
     overflow: hidden;
 }
 
-body{
+body {
     background-image: url(../imagenes/642457.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    margin-left: -5%
+    margin-right: 3%; /* Corrige desplazamientos innecesarios */
+    padding: 0;
 }
 
-main{
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
     padding: 20px;
-    margin: auto;
-    margin-top: 150px;
-    margin-left: 400px;;
-    
 }
 
 .contenedor_todo{
     width: 100%;
     max-width: 800px;
-    max-width: auto;
     position: relative;
 }
 
