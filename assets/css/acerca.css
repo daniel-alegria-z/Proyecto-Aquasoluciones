@@ -123,8 +123,9 @@ nav ul.menua li.lol a {
   }
 
 
-.anterior-acerca {
-    right: 310px;
+  .anterior-acerca {
+    top: -50px;
+    right: 64%;
     background-color: rgba(94, 94, 94, 0.818);
     color: #dedede;
     font-size: 50px;
@@ -134,7 +135,8 @@ nav ul.menua li.lol a {
   }  
 
 .siguiente-acerca{
-    right: 220px;
+    top: -50px;
+    left: 45%;
     background-color: rgba(94, 94, 94, 0.818);
     color: #dedede;
     font-size: 50px;
@@ -150,8 +152,6 @@ nav ul.menua li.lol a {
     height: 50px;
     width: 50px;
     min-height: 105px;
-    top: 59%;
-     
 }
 
 .anterior-acerca:hover {
@@ -161,14 +161,16 @@ nav ul.menua li.lol a {
     height: 50px;
     width: 50px;
     min-height: 105px;
-    top: 61%
 }
 .siguiente-acerca:hover {
-    right: 220px;
+    top: -50px;
+    left: 43%;
+  
 }
 
 .anterior-acerca:hover{
-    right: 310px;
+    right: 62%;
+    top: -50px;
 }
 
 
