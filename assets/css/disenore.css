@@ -32,8 +32,10 @@ form {
     font-size: 30px;
     color: #000000;
     margin-bottom: 20px;
-    text-align: center;
-    margin-top: 79px
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    padding-right: 27.9px;
 }
 
 /* Contenedor de logo + menú */
@@ -42,10 +44,7 @@ form {
     justify-content: space-between;
     align-items: center;
     padding: 0px 40px;
-    position: absolute;
-    top: 3%;
-    left: 35%;
-  
+    position: static;
   }
 
 /* Logo */
