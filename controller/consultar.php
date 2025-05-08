@@ -383,23 +383,29 @@ if (!$dbconn) {
     
                     // Mostrar los detalles del registro
                     echo '<form id="miFormulario" action="" method="post">';
-                    echo '<h2 class="text-xl font-semibold text-center mb-4"> Detalles del Cliente </h2>';
-                    echo '<table class="table-auto border-collapse mx-auto w-full max-w-4xl text-sm">';
+                    echo '<h2 class="text-xl font-semibold text-center mb-4"> Detalles del Empleado </h2>';
+                    echo '<div style="overflow-x: auto;">'; // Contenedor para scroll horizontal
+                    echo '<table class="table-auto border-collapse mx-auto w-full max-w-4xl text-sm" style="table-layout: fixed;">';
                     echo '<tr style="background-color: #3498db; color: white;">';
-                    echo '<th class="px-2 py-1">ID</th>';
-                    echo '<th class="px-2 py-1">Cédula</th>';
-                    echo '<th class="px-2 py-1">Nombre Completo</th>';
-                    echo '<th class="px-2 py-1">Dirección</th>';
-                    echo '<th class="px-2 py-1">Celular</th>';
+                    echo '<th class="px-2 py-1"> ID </th>';
+                    echo '<th class="px-2 py-1"> CEDULA </th>';
+                    echo '<th class="px-2 py-1"> NOMBRE </th>';
+                    echo '<th class="px-2 py-1"> APELLIDO </th>';
+                    echo '<th class="px-2 py-1"> CELULAR </th>';
+                    echo '<th class="px-2 py-1"> EMAIL </th>';
+                    echo '<th class="px-2 py-1"> CARGO </th>';
                     echo '</tr>';
                     echo '<tr class="odd:bg-gray-100 even:bg-white">';
                     echo '<td class="px-2 py-1 text-center">' . $row['id'] . '</td>';
                     echo '<td class="px-2 py-1 text-center">' . $row['cedula'] . '</td>';
-                    echo '<td class="px-2 py-1 text-center">' . $row['nombre_completo'] . '</td>';
-                    echo '<td class="px-2 py-1 text-center">' . $row['direccion'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center">' . $row['nombre'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center">' . $row['apellido'] . '</td>';
                     echo '<td class="px-2 py-1 text-center">' . $row['celular'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center">' . $row['email'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center">' . $row['cargo'] . '</td>';
                     echo '</tr>';
                     echo '</table>';
+                    echo '</div>'; // Cierra el contenedor
                     echo '</form>';
                 } else {
                     echo "No se encontró el registro.";
