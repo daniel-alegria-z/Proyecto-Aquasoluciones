@@ -17,6 +17,10 @@ header.headera {
   height: 85px;
 }
 
+body{
+  overflow-x: hidden;
+}
+
 /* Contenedor de logo + menú */
 .cuadrologoa {
   display: flex;
