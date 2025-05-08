@@ -21,6 +21,38 @@ main {
     padding: 20px;
 }
 
+.mensaje_registro{
+    display: none;
+    position: absolute;
+    top: 152px;
+    left: 209.5px;
+    transform: translateX(-50%);
+    color: white;
+    white-space: nowrap;
+    font-size: 17.5px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.mensaje-xx{
+    display: none;
+    position: absolute;
+    top: 152px;
+    left: 208.5px;
+    transform: translateX(-50%);
+    color: white;
+    white-space: nowrap;
+    font-size: 17.5px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
 .contenedor_todo{
     width: 100%;
     max-width: 800px;
