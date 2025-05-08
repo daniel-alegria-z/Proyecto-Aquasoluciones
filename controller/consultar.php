@@ -327,28 +327,33 @@ if (!$dbconn) {
                 if ($stmt->execute() && $stmt->rowCount() > 0) {
                     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     
+                    // Mostrar los detalles del registro
                     echo '<form id="miFormulario" action="" method="post">';
                     echo '<h2 class="text-xl font-semibold text-center mb-4"> Detalles del Empleado </h2>';
                     echo '<div style="overflow-x: auto;">'; // Contenedor para scroll horizontal
                     echo '<table class="table-auto border-collapse mx-auto w-full max-w-4xl text-sm" style="table-layout: fixed;">';
+                    echo '<thead>';
                     echo '<tr style="background-color: #3498db; color: white;">';
-                    echo '<th class="px-2 py-1"> ID </th>';
-                    echo '<th class="px-2 py-1"> CEDULA </th>';
-                    echo '<th class="px-2 py-1"> NOMBRE </th>';
-                    echo '<th class="px-2 py-1"> APELLIDO </th>';
-                    echo '<th class="px-2 py-1"> CELULAR </th>';
-                    echo '<th class="px-2 py-1"> EMAIL </th>';
-                    echo '<th class="px-2 py-1"> CARGO </th>';
+                    echo '<th class="px-2 py-1">ID</th>';
+                    echo '<th class="px-2 py-1">Cédula</th>';
+                    echo '<th class="px-2 py-1">Nombre</th>';
+                    echo '<th class="px-2 py-1">Apellido</th>';
+                    echo '<th class="px-2 py-1">Celular</th>';
+                    echo '<th class="px-2 py-1">Email</th>';
+                    echo '<th class="px-2 py-1">Cargo</th>';
                     echo '</tr>';
+                    echo '</thead>';
+                    echo '<tbody>';
                     echo '<tr class="odd:bg-gray-100 even:bg-white">';
-                    echo '<td class="px-2 py-1 text-center">' . $row['id'] . '</td>';
-                    echo '<td class="px-2 py-1 text-center">' . $row['cedula'] . '</td>';
-                    echo '<td class="px-2 py-1 text-center">' . $row['nombre'] . '</td>';
-                    echo '<td class="px-2 py-1 text-center">' . $row['apellido'] . '</td>';
-                    echo '<td class="px-2 py-1 text-center">' . $row['celular'] . '</td>';
-                    echo '<td class="px-2 py-1 text-center">' . $row['email'] . '</td>';
-                    echo '<td class="px-2 py-1 text-center">' . $row['cargo'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center" style="overflow-wrap: break-word;">' . $row['id'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center" style="overflow-wrap: break-word;">' . $row['cedula'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center" style="overflow-wrap: break-word;">' . $row['nombre'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center" style="overflow-wrap: break-word;">' . $row['apellido'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center" style="overflow-wrap: break-word;">' . $row['celular'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center" style="overflow-wrap: break-word;">' . $row['email'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center" style="overflow-wrap: break-word;">' . $row['cargo'] . '</td>';
                     echo '</tr>';
+                    echo '</tbody>';
                     echo '</table>';
                     echo '</div>'; // Cierra el contenedor
                     echo '</form>';
