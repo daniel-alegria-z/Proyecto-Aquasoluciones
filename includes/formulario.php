@@ -13,11 +13,6 @@
     <title>Registro de datos</title>
 </head>
 <body>
-    <div class="Cargarpag">
-        <div class="cargar"><img src="assets/imagenes/loading.gif" alt="#"/></div>
-    </div>
-
-
     <header class="header2">
         <div class="cuadrologor">
             <div class="logor">
