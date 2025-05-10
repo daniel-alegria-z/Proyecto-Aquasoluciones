@@ -1,6 +1,7 @@
 <?php
 
 require '/var/www/html/conexionBD/conexion.php';
+require '/var/www/html/controller/auth.php';
 
 // Crear una instancia de la clase ConexionBD
 $conexionBD = new ConexionBD();

@@ -22,7 +22,7 @@ try {
     $pdo->exec($query); // Ejecuta la consulta
 
     // Redirigir a la página de inicio de sesión con un mensaje de éxito
-    header("Location: ../iniciar_sesion.html?registro=exitoso");
+    header("Location: ../iniciar_sesion.php?registro=exitoso");
     exit();
     
 } catch (Exception $e) {

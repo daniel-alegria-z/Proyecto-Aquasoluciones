@@ -68,20 +68,11 @@ require '/var/www/html/controller/auth.php';
         <select name="combobox" id="combobox" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
             <option value="0" selected>Selecciona una...</option>
             <option value="1">Empleados</option>
-            <option value="3">Contratos Empleado</option>
             <option value="2">Clientes</option>
-            <option value="4">Contratos de Servicio</option>
-            <option value="5">Medidores</option>
-            <option value="6">Lecturas de Medidor</option>
-            <option value="7">Facturas</option>
-            <option value="8">Pagos</option>
             <option value="9">Reportes del Servicio</option>
         </select>
         <br><br>
-        <input type="submit" value="Registrar" name="registrar">
-        <input type="submit" value="Modificar" name="modificar">
         <input type="submit" value="Consultar" name="consultar">
-        <input type="submit" value="Eliminar" name="eliminar">
         <input type="submit" value="Listar" name="listar">
     </div>
 </form>

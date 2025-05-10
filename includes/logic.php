@@ -1,4 +1,8 @@
 <?php
+require '/var/www/html/controller/auth.php'; // Asegúrate de que no haya salida antes de esta línea
+?>
+
+<?php
 if ($_SERVER && isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $opcion = isset($_POST['combobox']) ? $_POST['combobox'] : null;
 

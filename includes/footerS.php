@@ -10,7 +10,7 @@ require '/var/www/html/controller/auth.php';
  
  
  <!--final formulario-->
- <div id="separador"></div>   
+ <div id="separador" style="margin-top:400px"></div>   
 <footer>
     <div class="contenido2">
         <div class="redes_sociales">

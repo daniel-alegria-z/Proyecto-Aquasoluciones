@@ -15,19 +15,31 @@ try {
     $pdo = $conn->conexionBD();
 
     // Verificar credenciales
-    $query = "SELECT * FROM usuarios WHERE correo = :correo AND contrasena = :passwd";
+    $query = "SELECT usuario, rol FROM usuarios WHERE correo = :correo AND contrasena = :passwd";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':correo', $correo);
     $stmt->bindParam(':passwd', $pasword);
     $stmt->execute();
 
     if ($stmt->rowCount() > 0) {
-        $_SESSION['correo'] = $correo;
-        $_SESSION['usuario'] = $stmt->fetch(PDO::FETCH_ASSOC)['usuario']; // Asignar el nombre de usuario a la sesión    
-        header("Location: ../registroadmin.php");
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $_SESSION['rol'] = $user['rol']; // Almacena el rol en la sesión
+        $nombreUsuario = $user['usuario']; // Extrae el nombre de usuario
+
+        // Redirigir según el rol
+        if ($user['rol'] === 'administrador') {
+            header("Location: ../registroadmin.php");
+        } elseif ($user['rol'] === 'supervisor') {
+            header("Location: ../registrosuperv.php");
+        } else {                     
+            echo "<script>
+                    alert('El usuario \"$nombreUsuario\" todavía no tiene un rol asignado, por favor vuelva a iniciar sesión más tarde.');
+                    window.location.href = '../iniciar_sesion.php';
+                </script>";
+        }
         exit();
     } else {
-        header("Location: ../iniciar_sesion.html?contraseña=incorrecta");
+        header("Location: ../iniciar_sesion.php?contraseña=incorrecta");
         exit();
     }
 } catch (Exception $e) {

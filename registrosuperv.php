@@ -1,8 +1,8 @@
 <?php
 ob_start(); // Inicia el buffer de salida
 require 'controller/auth.php';
-include 'includes/formulario.php';
-include 'includes/logic.php';
-include 'includes/footer.php';
+include 'includes/formularioS.php';
+include 'includes/logicS.php';
+include 'includes/footerS.php';
 ob_end_flush(); // Envía la salida al navegador
 ?>
