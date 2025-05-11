@@ -1,38 +1,71 @@
 <?php
 require '/var/www/html/conexionBD/conexion.php';
 
-// Obtener los parámetros enviados por AJAX
-$id = isset($_POST['id']) ? $_POST['id'] : null;
-$campo = isset($_POST['campo']) ? $_POST['campo'] : null;
-$tabla = isset($_POST['tabla']) ? $_POST['tabla'] : null; // Nuevo: tabla seleccionada
-$columna_id = isset($_POST['columna_id']) ? $_POST['columna_id'] : 'id'; // Columna identificadora predeterminada
-
-// Validar que los parámetros sean válidos
-if (!$tabla || $campo === 'selec' || !$id || $id === "selec" || !$campo || !$columna_id) {
-    echo "Datos incompletos o inválidos.";
-    exit;
-}
-
-// Crear una instancia de la clase ConexionBD
 $conexionBD = new ConexionBD();
-$dbconn = $conexionBD->conexionBD(); // Obtener la conexión
+$dbconn = $conexionBD->conexionBD();
 
 if (!$dbconn) {
     echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
     exit;
 }
 
-// Construir la consulta según la tabla y columna seleccionadas
-$sql = "SELECT $campo FROM $tabla WHERE $columna_id = :id";
-$stmt = $dbconn->prepare($sql); // Preparar la consulta
+// MODO SELECT DINÁMICO
+if (isset($_POST['modo_select']) && $_POST['modo_select']) {
+    $tabla = $_POST['tabla_origen'] ?? '';
+    $campo_mostrar = $_POST['campo_mostrar'] ?? 'id';
+    $descripcion = isset($_POST['descripcion']) ? explode(',', $_POST['descripcion']) : [];
 
-// Vincular el parámetro
+    if (!$tabla || !$campo_mostrar) {
+        echo '<option value="">Datos insuficientes</option>';
+        exit;
+    }
+
+    $sql = "SELECT * FROM $tabla";
+    $stmt = $dbconn->prepare($sql);
+
+    if ($stmt->execute()) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $value = $row[$campo_mostrar];
+            $label = $value;
+            $nombreCompleto = [];
+
+            
+            foreach ($descripcion as $campo) {
+                if (isset($row[$campo])) {
+                    $nombreCompleto[] = $row[$campo];
+                }
+            }
+
+            if (!empty($nombreCompleto)) {
+                $label .= ' - ' . implode(' ', $nombreCompleto);
+            }
+
+            echo "<option value=\"$value\">$label</option>";
+        }
+    } else {
+        echo '<option>Error al ejecutar la consulta</option>';
+    }
+    exit;
+}
+
+// CONSULTA NORMAL (mostrar valor actual)
+$id = $_POST['id'] ?? null;
+$campo = $_POST['campo'] ?? null;
+$tabla = $_POST['tabla'] ?? null;
+$columna_id = $_POST['columna_id'] ?? 'id';
+
+if (!$tabla || $campo === 'selec' || !$id || $id === "selec" || !$campo || !$columna_id) {
+    echo "Datos incompletos o inválidos.";
+    exit;
+}
+
+$sql = "SELECT $campo FROM $tabla WHERE $columna_id = :id";
+$stmt = $dbconn->prepare($sql);
 $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-// Ejecutar la consulta
 if ($stmt->execute() && $stmt->rowCount() > 0) {
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    echo $row[$campo]; // Devolver el valor del campo
+    echo htmlspecialchars($row[$campo]);
 } else {
     echo "No se encontró el registro.";
 }

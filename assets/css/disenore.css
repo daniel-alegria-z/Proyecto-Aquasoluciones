@@ -81,7 +81,20 @@ label {
     font-weight: bold;
     margin-bottom: 8px;
   }
-  input[type="text"] {
+
+input[type="text"] {
+    color: #000000;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    
+    margin-bottom: 5px;
+    margin-left: 27%;
+    display: block;
+    width: 40%;
+}
+
+input[type="email"] {
     color: #000000;
     padding: 5px 15px;
     border-radius: 5px;
@@ -145,3 +158,4 @@ textarea {
   box-sizing: border-box;
   height: 70px;
 }
+

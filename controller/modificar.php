@@ -44,7 +44,7 @@ if (!$dbconn) {
             echo '<br>';
             echo '<input type="hidden" id="tabla_combobox" value="empleado">'; // Tabla seleccionada
             echo '<label>Seleccione el campo a modificar: </label>';
-            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual(); actualizarInput()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
             echo '<option value="selec">Seleccione...</option>';
             echo '<option value="cedula">Cédula</option>';
             echo '<option value="nombre">Nombre</option>';
@@ -55,8 +55,10 @@ if (!$dbconn) {
             echo '</select>';
         
             echo '<br>';
+            echo '<div id="contenedorNuevoValor" style="display:none;">';
             echo '<label>Nuevo valor: </label>';
-            echo '<input type="text" name="valor" id="nuevo_valor" class="input-estilo" required>';
+            echo '  <div id="inputContainer"></div>'; // Aquí se inyecta el input
+            echo '</div>';
 
             echo '<br><br>';
             echo '<input type="submit" value="Modificar" name="modificar1">';
@@ -92,13 +94,13 @@ if (!$dbconn) {
                             echo '<option value="' . $row['id'] . '">' . $row['id'] . ' - ' . $row['nombre_completo'] . '</option>';
                         }
                         echo '</select>';
-                        }
+                    }
             }
 
             echo '<br>';
             echo '<input type="hidden" id="tabla_combobox" value="cliente">'; // Tabla seleccionada
             echo '<label>Seleccione el campo a modificar: </label>';
-            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual(); actualizarInput()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
             echo '<option value="selec">Seleccione...</option>';
             echo '<option value="cedula">Cédula</option>';
             echo '<option value="nombre_completo">Nombre Completo</option>';
@@ -107,8 +109,10 @@ if (!$dbconn) {
             echo '</select>';
 
             echo '<br>';
+            echo '<div id="contenedorNuevoValor" style="display:none;">';
             echo '<label>Nuevo valor: </label>';
-            echo '<input type="text" name="valor" id="nuevo_valor" class="input-estilo" required>';
+            echo '  <div id="inputContainer"></div>'; // Aquí se inyecta el input
+            echo '</div>';
 
             
             echo '<br><br>';
@@ -142,7 +146,7 @@ if (!$dbconn) {
                         echo '<select name="id" id="id_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
                         echo '<option value="selec">Seleccione...</option>';
                         foreach ($result as $row) {
-                            echo '<option value="' . $row['id_contrato'] . '">' . 'ID: ' . $row['id_contrato'] . ' - Empleado con ID: ' . $row['id_empleado'] . '</option>';
+                            echo '<option value="' . $row['id_contrato'] . '">' . 'ID: ' . $row['id_contrato'] . '</option>';
                         }
                         echo '</select>';
                         }
@@ -151,7 +155,7 @@ if (!$dbconn) {
             echo '<br>';
             echo '<input type="hidden" id="tabla_combobox" value="contrato_empleado">'; // Tabla seleccionada
             echo '<label>Seleccione el campo a modificar: </label>';
-            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual(); actualizarInput()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
             echo '<option value="selec">Seleccione...</option>';
             echo '<option value="id_empleado">ID Empleado</option>';
             echo '<option value="tipo_contrato">Tipo de Contrato</option>';
@@ -161,8 +165,10 @@ if (!$dbconn) {
             echo '</select>';
 
             echo '<br>';
+            echo '<div id="contenedorNuevoValor" style="display:none;">';
             echo '<label>Nuevo valor: </label>';
-            echo '<input type="text" name="valor" id="nuevo_valor" class="input-estilo" required>';
+            echo '  <div id="inputContainer"></div>'; // Aquí se inyecta el input
+            echo '</div>';
 
 
             echo '<br><br>';
@@ -197,7 +203,7 @@ if (!$dbconn) {
                         echo '<select name="id" id="id_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
                         echo '<option value="selec">Seleccione...</option>';
                         foreach ($result as $row) {
-                            echo '<option value="' . $row['id_servicio'] . '">' . 'ID: ' . $row['id_servicio'] . ' - Cliente con ID: ' . $row['id_cliente'] . '</option>';
+                            echo '<option value="' . $row['id_servicio'] . '">' . 'ID: ' . $row['id_servicio'] . '</option>';
                         }
                         echo '</select>';
                         }
@@ -206,7 +212,7 @@ if (!$dbconn) {
             echo '<br>';
             echo '<input type="hidden" id="tabla_combobox" value="contrato_servicio">'; // Tabla seleccionada
             echo '<label>Seleccione el campo a modificar: </label>';
-            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual(); actualizarInput()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
             echo '<option value="selec">Seleccione...</option>';
             echo '<option value="id_cliente">ID Cliente</option>';
             echo '<option value="tipo_servicio">Tipo de Servicio</option>';
@@ -215,8 +221,10 @@ if (!$dbconn) {
             echo '</select>';
             
             echo '<br>';
+            echo '<div id="contenedorNuevoValor" style="display:none;">';
             echo '<label>Nuevo valor: </label>';
-            echo '<input type="text" name="valor" id="nuevo_valor" class="input-estilo" required>';
+            echo '  <div id="inputContainer"></div>'; // Aquí se inyecta el input
+            echo '</div>';
 
             echo '<br><br>';
             echo '<input type="submit" value="Modificar" name="modificar4">';
@@ -235,7 +243,7 @@ if (!$dbconn) {
                 echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
             } else {
                 // Consulta para obtener los IDs registrados
-                $sql = "SELECT id_medidor, id_cliente FROM medidor";
+                $sql = "SELECT id_medidor, numero_serie FROM medidor";
                 $stmt = $dbconn->prepare($sql); // Preparar la consulta
 
                 if (!$stmt->execute()) {
@@ -248,7 +256,7 @@ if (!$dbconn) {
                         echo '<select name="id" id="id_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
                         echo '<option value="selec">Seleccione...</option>';
                         foreach ($result as $row) {
-                            echo '<option value="' . $row['id_medidor'] . '">' . 'ID: ' . $row['id_medidor'] . ' - Cliente con ID: ' . $row['id_cliente'] . '</option>';
+                            echo '<option value="' . $row['id_medidor'] . '">' . 'ID: ' . $row['id_medidor'] . ' - Serie: ' . $row['numero_serie'] . '</option>';
                         }
                         echo '</select>';
                         }
@@ -258,7 +266,7 @@ if (!$dbconn) {
             echo '<input type="hidden" id="tabla_combobox" value="medidor">'; // Tabla seleccionada
 
             echo '<label class="block text-black text-sm font-bold mb-2" for="campo">Seleccione el campo a modificar</label>';
-            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual(); actualizarInput()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
             echo '<option value="selec">Seleccione...</option>';
             echo '<option value="id_cliente">ID Cliente</option>';
             echo '<option value="numero_serie">Número de Serie</option>';
@@ -266,8 +274,10 @@ if (!$dbconn) {
                 
 
             echo '<br>';
+            echo '<div id="contenedorNuevoValor" style="display:none;">';
             echo '<label>Nuevo valor: </label>';
-            echo '<input type="text" name="valor" id="nuevo_valor" class="input-estilo" required>';
+            echo '  <div id="inputContainer"></div>'; // Aquí se inyecta el input
+            echo '</div>';
             
             echo '<br><br>';
             echo '<input type="submit" value="Modificar" name="modificar5">';
@@ -300,7 +310,7 @@ if (!$dbconn) {
                         echo '<select name="id" id="id_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
                         echo '<option value="selec">Seleccione...</option>';
                         foreach ($result as $row) {
-                            echo '<option value="' . $row['id_lectura'] . '">' . 'ID: ' . $row['id_lectura'] . ' - Medidor con ID: ' . $row['id_medidor'] . '</option>';
+                            echo '<option value="' . $row['id_lectura'] . '">' . 'ID: ' . $row['id_lectura'] . '</option>';
                         }
                         echo '</select>';
                         }
@@ -310,7 +320,7 @@ if (!$dbconn) {
             echo '<input type="hidden" id="tabla_combobox" value="lectura_medidor">'; // Tabla seleccionada
 
             echo '<label>Seleccione el campo a modificar: </label>';
-            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual(); actualizarInput()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
             echo '<option value="selec">Seleccione...</option>';
             echo '<option value="id_medidor">ID Medidor</option>';
             echo '<option value="fecha_lectura">Fecha de Lectura</option>';
@@ -319,8 +329,10 @@ if (!$dbconn) {
             echo '</select>';
 
             echo '<br>';
-            echo '<label class="block text-black text-sm font-bold mb-2" for="valor">Nuevo valor</label>';
-            echo '<input type="text" name="valor" id="nuevo_valor" class="input-estilo" required>';
+            echo '<div id="contenedorNuevoValor" style="display:none;">';
+            echo '<label>Nuevo valor: </label>';
+            echo '  <div id="inputContainer"></div>'; // Aquí se inyecta el input
+            echo '</div>';
         
             echo '<br><br>';
             echo '<input type="submit" value="Modificar" name="modificar6">';
@@ -353,7 +365,7 @@ if (!$dbconn) {
                         echo '<select name="id" id="id_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
                         echo '<option value="selec">Seleccione...</option>';
                         foreach ($result as $row) {
-                            echo '<option value="' . $row['id_factura'] . '">' . 'ID: ' . $row['id_factura'] . ' - Cliente con ID: ' . $row['id_cliente'] . '</option>';
+                            echo '<option value="' . $row['id_factura'] . '">' . 'ID: ' . $row['id_factura'] . '</option>';
                         }
                         echo '</select>';
                         }
@@ -364,17 +376,19 @@ if (!$dbconn) {
             
 
             echo '<label>Seleccione el campo a modificar: </label>';
-            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual(); actualizarInput()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
             echo '<option value="selec">Seleccione...</option>';
             echo '<option value="id_cliente">ID Cliente</option>';
             echo '<option value="fecha_aviso">Fecha de Aviso</option>';
             echo '<option value="fecha_vencimiento">Fecha de Vencimiento</option>';
-            echo '<option value="total">Total</option>';
+            echo '<option value="total">Costo Total</option>';
             echo '</select>';
 
             echo '<br>';
+            echo '<div id="contenedorNuevoValor" style="display:none;">';
             echo '<label>Nuevo valor: </label>';
-            echo '<input type="text" name="valor" id="nuevo_valor" class="input-estilo" required>';
+            echo '  <div id="inputContainer"></div>'; // Aquí se inyecta el input
+            echo '</div>';
             
             echo '<br><br>';
             echo '<input type="submit" value="Modificar" name="modificar7">';
@@ -404,10 +418,10 @@ if (!$dbconn) {
                     echo '<br>';
         
                         echo '<label class="block text-black text-sm font-bold mb-2" for="id">Seleccione el ID del pago a modificar</label>';
-                        echo '<select name="id" id="id_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+                        echo '<select name="id" id="id_combobox" onchange="cargarValorActual(); actualizarInput()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
                         echo '<option value="selec">Seleccione...</option>';
                         foreach ($result as $row) {
-                            echo '<option value="' . $row['id_pago'] . '">' . 'ID: ' . $row['id_pago'] . ' - Factura con ID: ' . $row['id_factura'] . '</option>';
+                            echo '<option value="' . $row['id_pago'] . '">' . 'ID: ' . $row['id_pago'] . '</option>';
                         }
                         echo '</select>';
                         }
@@ -418,7 +432,7 @@ if (!$dbconn) {
             
 
             echo '<label>Seleccione el campo a modificar: </label>';
-            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual(); actualizarInput()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
             echo '<option value="selec">Seleccione...</option>';
             echo '<option value="id_factura">ID Factura</option>';
             echo '<option value="fecha">Fecha</option>';
@@ -426,8 +440,10 @@ if (!$dbconn) {
             echo '</select>';
         
             echo '<br>';
+            echo '<div id="contenedorNuevoValor" style="display:none;">';
             echo '<label>Nuevo valor: </label>';
-            echo '<input type="text" name="valor" id="nuevo_valor" class="input-estilo" required>';
+            echo '  <div id="inputContainer"></div>'; // Aquí se inyecta el input
+            echo '</div>';
         
             echo '<br><br>';
             echo '<input type="submit" value="Modificar" name="modificar8">';
@@ -460,7 +476,7 @@ if (!$dbconn) {
                         echo '<select name="id" id="id_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
                         echo '<option value="selec">Seleccione...</option>';
                         foreach ($result as $row) {
-                            echo '<option value="' . $row['id_reporte'] . '">' . 'ID: ' . $row['id_reporte'] . ' - Cliente con ID: ' . $row['id_cliente'] . '</option>';
+                            echo '<option value="' . $row['id_reporte'] . '">' . 'ID: ' . $row['id_reporte'] . '</option>';
                         }
                         echo '</select>';
                         }
@@ -472,7 +488,7 @@ if (!$dbconn) {
             
 
             echo '<label>Seleccione el campo a modificar: </label>';
-            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
+            echo '<select name="campo" id="campo_combobox" onchange="cargarValorActual(); actualizarInput()" class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>';
             echo '<option value="selec">Seleccione...</option>';
             echo '<option value="id_cliente">ID Cliente</option>';
             echo '<option value="problema">Problema Reportado</option>';
@@ -481,9 +497,11 @@ if (!$dbconn) {
             echo '</select>';
 
             echo '<br>';
+            echo '<div id="contenedorNuevoValor" style="display:none;">';
             echo '<label>Nuevo valor: </label>';
-            echo '<input type="text" name="valor" id="nuevo_valor" class="input-estilo" required>';
-        
+            echo '  <div id="inputContainer"></div>'; // Aquí se inyecta el input
+            echo '</div>';
+
             echo '<br><br>';
             echo '<input type="submit" value="Modificar" name="modificar9">';
         echo '</form>';
@@ -723,6 +741,280 @@ if (!$dbconn) {
             input.style.marginLeft = '30%'; // Ajusta el margen izquierdo
         });
     });
+    
+    function actualizarInput() {
+        const campoSeleccionado = document.getElementById('campo_combobox').value;
+        const idSeleccionado = document.getElementById('id_combobox').value;
+        const tablaSeleccionada = document.getElementById('tabla_combobox').value;
+        const inputContainer = document.getElementById('inputContainer');
+        const contenedor = document.getElementById('contenedorNuevoValor');
+
+        inputContainer.innerHTML = ''; // Limpiar input anterior
+
+        const tiposDeInput = {
+            cedula: {
+                tipo: 'text',
+                clase: 'input-estilo',
+                maxlength: 13,
+                oninput: "if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);",
+                onkeypress: "return event.charCode >= 48 && event.charCode <= 57",
+                placeholder: 'Escribe el número de cédula'
+            },
+            celular: {
+                tipo: 'text',
+                clase: 'input-estilo',
+                maxlength: 13,
+                oninput: "if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);",
+                onkeypress: "return event.charCode >= 48 && event.charCode <= 57",
+                placeholder: 'Escribe el número de celular'
+            },
+            email: {
+                tipo: 'email',
+                clase: 'input-estilo',
+                placeholder: 'Escribe@tuemail'
+            },
+            nombre: {
+                tipo: 'text',
+                clase: 'input-estilo',
+                placeholder: 'Escribe el nombre'
+            },
+            nombre_completo: {
+                tipo: 'text',
+                clase: 'input-estilo',
+                placeholder: 'Escribe el nombre'
+            },
+            direccion: {
+                tipo: 'text',
+                clase: 'input-estilo',
+                placeholder: 'Escribe tu dirección'
+            },
+            apellido: {
+                tipo: 'text',
+                clase: 'input-estilo',
+                placeholder: 'Escribe el apellido'
+            },
+            cargo: {
+                tipo: 'text',
+                clase: 'input-estilo',
+                placeholder: 'Escribe el cargo'
+            },
+            id_empleado: {
+                tipo: 'select',
+                clase: 'class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"',
+                tablaOrigen: 'empleado',
+                campoMostrar: 'id',
+                descripcion: ['nombre', 'apellido'],
+                cargarOpciones: true
+            },
+            id_cliente: {
+                tipo: 'select',
+                clase: 'class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"',
+                tablaOrigen: 'cliente',
+                campoMostrar: 'id',
+                descripcion: ['nombre_completo'],
+                cargarOpciones: true
+            },
+            id_medidor: {
+                tipo: 'select',
+                clase: 'class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"',
+                tablaOrigen: 'medidor',
+                campoMostrar: 'id_medidor',
+                descripcion: ['numero_serie'],
+                cargarOpciones: true
+            },
+            id_factura: {
+                tipo: 'select',
+                clase: 'class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"',
+                tablaOrigen: 'factura',
+                campoMostrar: 'id_factura',
+                descripcion: ['id_cliente'],
+                cargarOpciones: true
+            },
+            id_pago: {
+                tipo: 'select',
+                clase: 'class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"',
+                tablaOrigen: 'pagos',
+                campoMostrar: 'id_pago',
+                descripcion: ['id_factura'],
+                cargarOpciones: true
+            },
+            id_reporte: {
+                tipo: 'select',
+                clase: 'class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"',
+                tablaOrigen: 'reporte_servicio',
+                campoMostrar: 'id_reporte',
+                descripcion: ['id_cliente'],
+                cargarOpciones: true
+            },
+            tipo_contrato: {
+                tipo: 'text',
+                clase: 'input-estilo',
+                placeholder: 'Escribe el tipo de contrato'
+            },
+            tipo_servicio: {
+                tipo: 'text',
+                clase: 'input-estilo',
+                placeholder: 'Escribe el tipo de servicio'
+            },
+            fecha_inicio: {
+                tipo: 'date',
+                clase: 'input-estilo-date'
+            },
+            fecha_fin: {
+                tipo: 'date',
+                clase: 'input-estilo-date'
+            },
+            sueldo: {
+                tipo: 'number',
+                clase: 'input-estilo',
+                placeholder: 'Escribe el sueldo'
+            },
+            numero_serie: {
+                tipo: 'text',
+                clase: 'input-estilo',
+                placeholder: 'Escribe el número de serie (AAAA-###-###)'
+            },
+            fecha_lectura: {
+                tipo: 'date',
+                clase: 'input-estilo-date'
+            },
+            lectura_actual: {
+                tipo: 'text',
+                clase: 'input-estilo',
+                onkeypress: "return event.charCode >= 48 && event.charCode <= 57",
+                placeholder: 'm³'
+            },
+            lectura_anterior: {
+                tipo: 'text',
+                clase: 'input-estilo',
+                onkeypress: "return event.charCode >= 48 && event.charCode <= 57",
+                placeholder: 'm³'
+            },
+            fecha_aviso: {
+                tipo: 'date',
+                clase: 'input-estilo-date'
+            },
+            fecha_vencimiento: {
+                tipo: 'date',
+                clase: 'input-estilo-date'
+            },
+            total: {
+                tipo: 'text',
+                clase: 'input-estilo',
+                onkeypress: "return event.charCode >= 48 && event.charCode <= 57",
+                placeholder: 'Escribe el total'
+            },
+            fecha: {
+                tipo: 'date',
+                clase: 'input-estilo-date'
+            },
+            monto: {
+                tipo: 'text',
+                clase: 'input-estilo',
+                onkeypress: "return event.charCode >= 48 && event.charCode <= 57",
+                placeholder: 'Escribe la cuantía'
+            },
+            problema: {
+                tipo: 'textarea',
+                clase: 'input-estilo-pro',
+                placeholder: 'Escribe el problema',
+                rows: 2,
+                cols: 40,
+            },
+            fecha_reporte: {
+                tipo: 'date',
+                clase: 'input-estilo-date'
+            },
+            estado: {
+                tipo: 'text',
+                clase: 'input-estilo',
+                placeholder: 'Pendiente/Solucionado'
+            }
+
+        };
+
+        const config = tiposDeInput[campoSeleccionado];
+
+        if (!config || idSeleccionado === "selec") {
+            contenedor.style.display = 'none';
+            return;
+        }
+
+        contenedor.style.display = 'block';
+
+        if (config.tipo === 'select' && config.cargarOpciones) {
+            const select = document.createElement('select');
+            select.name = 'valor';
+            select.id = 'nuevo_valor';
+            select.className = config.clase;
+            select.required = true;
+
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = 'Seleccione...';
+            select.appendChild(defaultOption);
+
+            const formData = new FormData();
+            formData.append('modo_select', true);
+            formData.append('tabla_origen', config.tablaOrigen);
+            formData.append('campo_mostrar', config.campoMostrar);
+            formData.append('descripcion', config.descripcion.join(','));
+
+            fetch('obtener_valor_actual.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                select.innerHTML += data;
+            })
+            .catch(error => {
+                console.error('Error al cargar opciones:', error);
+            });
+
+            inputContainer.appendChild(select);
+
+        } 
+        else if (config.tipo === 'textarea') {
+            // Crear un textarea
+            const textarea = document.createElement('textarea');
+            textarea.name = 'valor';
+            textarea.id = 'nuevo_valor';
+            textarea.className = config.clase;
+            textarea.placeholder = config.placeholder || '';
+            textarea.required = true;
+            textarea.rows = config.rows || 4; // Número de filas
+            textarea.cols = config.cols || 50; // Número de columnas
+            textarea.style.marginLeft = '22%';
+            textarea.style.width = 'auto';
+            textarea.style.position='flex';
+
+            inputContainer.appendChild(textarea);
+        } 
+        else {
+            const input = document.createElement('input');
+            input.type = config.tipo;
+            input.name = 'valor';
+            input.id = 'nuevo_valor';
+            input.className = config.clase;
+            input.placeholder = config.placeholder || '';
+            input.required = true;
+            
+            if (config.tipo === 'date') {
+                input.style.marginLeft = '35%';
+            } else {
+                input.style.marginLeft = '30%';
+            }
+            
+
+            if (config.maxlength) input.maxLength = config.maxlength;
+            if (config.oninput) input.setAttribute('oninput', config.oninput);
+            if (config.onkeypress) input.setAttribute('onkeypress', config.onkeypress);
+
+            inputContainer.appendChild(input);
+        }
+    }
+
 
     
 </script>

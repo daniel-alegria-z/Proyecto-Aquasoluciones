@@ -268,8 +268,8 @@ if (!$dbconn) {
                         echo '<td class="px-2 py-1 text-center">' . $row['id_lectura'] . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['id_medidor'] . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['fecha_lectura'] . '</td>';
-                        echo '<td class="px-2 py-1 text-center">' . $row['lectura_actual'] . '</td>';
-                        echo '<td class="px-2 py-1 text-center">' . $row['lectura_anterior'] . '</td>';
+                        echo '<td class="px-2 py-1 text-center">' . $row['lectura_actual'] . 'm³' . '</td>';
+                        echo '<td class="px-2 py-1 text-center">' . $row['lectura_anterior'] . 'm³' . '</td>';
                         echo '</tr>';
                     }
         
@@ -313,7 +313,7 @@ if (!$dbconn) {
                         echo '<td class="px-2 py-1 text-center">' . $row['id_cliente'] . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['fecha_aviso'] . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['fecha_vencimiento'] . '</td>';
-                        echo '<td class="px-2 py-1 text-center">' . $row['total'] . '</td>';
+                        echo '<td class="px-2 py-1 text-center">' . '$' . $row['total'] . '</td>';
                         echo '</tr>';
                     }
         
@@ -355,7 +355,7 @@ if (!$dbconn) {
                         echo '<td class="px-2 py-1 text-center">' . $row['id_pago'] . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['id_factura'] . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['fecha'] . '</td>';
-                        echo '<td class="px-2 py-1 text-center">' . $row['monto'] . '</td>';
+                        echo '<td class="px-2 py-1 text-center">' . '$' . $row['monto'] . '</td>';
                         echo '</tr>';
                     }
         
