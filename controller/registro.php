@@ -212,7 +212,7 @@ if (!$dbconn) {
 
             echo '<div>';
             echo '<label class="block text-black text-sm font-bold mb-2" for="nums">Número de serie</label>';
-            echo '<input class="input-estilo" type="text" name="nums" id="nums" maxlength="8" placeholder="AAAA-0000" required>';
+            echo '<input class="input-estilo" type="text" name="nums" id="nums" maxlength="8" placeholder="AAAA-###-###" required>';
             echo '</div>';
 
             echo '<div class="flex items-center justify-between">';
@@ -256,12 +256,12 @@ if (!$dbconn) {
 
             echo '<div>';
             echo '<label class="block text-black text-sm font-bold mb-2" for="leac">Lectura Actual</label>';
-            echo '<input class="input-estilo" type="text" name="leac" id="leac" pattern="[0-9]*" placeholder="Metros cúbicos" required>';
+            echo '<input class="input-estilo" type="text" name="leac" id="leac" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="m³" required>';
             echo '</div>';
 
             echo '<div>';
             echo '<label class="block text-black text-sm font-bold mb-2" for="lean">Lectura Anterior</label>';
-            echo '<input class="input-estilo" type="text" name="lean" id="lean" pattern="[0-9]*" placeholder="Metros cúbicos" required>';
+            echo '<input class="input-estilo" type="text" name="lean" id="lean" onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="m³" required>';
             echo '</div>';
 
             echo '<div class="flex items-center justify-between">';
