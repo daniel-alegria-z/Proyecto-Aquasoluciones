@@ -16,6 +16,9 @@ var caja_trasera_register = document.getElementById("caja_trasera_register");
 var formulario_correo = document.getElementById("form_correo");
 var trasera = document.getElementById("trasera");
 const msg = document.getElementById("mensaje-x");
+const msg2 = document.getElementById("mensaje_sesion");
+const msg3 = document.getElementById("mensaje_registro");
+
 
 //Funciones
 function anchoPage() {
@@ -71,6 +74,10 @@ function registrarUsuario() {
         caja_trasera_login.style.opacity = "1";
         msg.style.display = 'nonedisplay: block !important;';
         msg.style.opacity = "0"; 
+        msg2.style.display = 'nonedisplay: block !important;';
+        msg2.style.opacity = "0";
+        msg3.style.display = 'nonedisplay: block !important;';
+        msg3.style.opacity = "0";
     } else {
         formulario_register.style.display = "flex";
         contenedor_login_register.style.left = "10px";
@@ -93,6 +100,12 @@ function confirmarCorreo() {
         caja_trasera_register.style.display = "none";
         formulario_correo.style.display = "flex";
         contenedor_login_register.style.left = "410px";
+        msg.style.display = 'nonedisplay: block !important;';
+        msg.style.opacity = "0"; 
+        msg2.style.display = 'nonedisplay: block !important;';
+        msg2.style.opacity = "0";
+        msg3.style.display = 'nonedisplay: block !important;';
+        msg3.style.opacity = "0";
         
     } else {
         formulario_correo.style.display = "flex";
