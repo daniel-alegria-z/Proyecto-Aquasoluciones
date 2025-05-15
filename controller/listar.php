@@ -141,7 +141,7 @@ if (!$dbconn) {
                         echo '<td class="px-2 py-1 text-center">' . $row['tipo_contrato'] . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['fecha_inicio'] . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['fecha_fin'] . '</td>';
-                        echo '<td class="px-2 py-1 text-center">' . $row['sueldo'] . '</td>';
+                        echo '<td class="px-2 py-1 text-center">' . '$' . $row['sueldo'] . '</td>';
                         echo '</tr>';
                     }
 
