@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['correo'])) {
         // Define el enlace dependiendo del entorno
         $enlace = "http://localhost:8080/includes/recuperar_form.php?token=$token";
         if (MAIL_ENV !== 'local') {
-            $enlace = "https://pruebita-production.up.railway.app/includes/recuperar_form.php?token=$token";
+            $enlace = "https://php-docker-production.up.railway.app/includes/recuperar_form.php?token=$token";
         }
 
         $asunto = "🔐 Recupera tu contraseña";
