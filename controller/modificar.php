@@ -718,7 +718,7 @@ if (!$dbconn) {
 
         // Realizar una solicitud AJAX al servidor
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'obtener_valor_actual.php', true);
+        xhr.open('POST', 'controller/obtener_valor_actual.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         xhr.onreadystatechange = function () {
@@ -960,7 +960,7 @@ if (!$dbconn) {
             formData.append('campo_mostrar', config.campoMostrar);
             formData.append('descripcion', config.descripcion.join(','));
 
-            fetch('obtener_valor_actual.php', {
+            fetch('controller/obtener_valor_actual.php', {
                 method: 'POST',
                 body: formData
             })

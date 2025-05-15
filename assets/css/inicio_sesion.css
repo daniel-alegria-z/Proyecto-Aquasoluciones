@@ -21,6 +21,17 @@ main {
     padding: 20px;
 }
 
+.input-error {
+    border: 2px solid red !important;
+}
+
+.mensaje-error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: -15px;
+    margin-bottom: 17px;
+}
+
 .mensaje_registro{
     display: none;
     position: absolute;
@@ -438,3 +449,4 @@ main {
         top: -59.5px
     }
 }
+
