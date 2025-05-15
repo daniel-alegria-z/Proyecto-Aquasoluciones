@@ -517,7 +517,9 @@ CREATE TABLE public.usuarios (
     nombre_completo character varying NOT NULL,
     correo character varying NOT NULL,
     contrasena character varying NOT NULL,
-    usuario character varying NOT NULL
+    usuario character varying NOT NULL,
+    rol character varying DEFAULT 'supervisor'::character varying,
+    token_recuperacion character varying
 );
 
 
@@ -669,11 +671,11 @@ ALTER TABLE ONLY public.usuarios ALTER COLUMN id SET DEFAULT nextval('public.usu
 --
 
 COPY public.cliente (id, cedula, nombre_completo, direccion, celular) FROM stdin;
-1	64556465456	Daniel Alegria	Calle 13	3152451224
 2	456465465	Yurani Marcela Riascos	Lille 12	3162563224
 3	89865464	Oscar Chamorro	Delta 12	3252541425
 4	14525546	Luisa Velasco	Calle 21321	3215465878
 5	652356846	Osvaldo García	Calle 12	3022562114
+1	64556465456	Daniel Alegria	Calle 4° #23-12	3152451224
 \.
 
 
@@ -683,10 +685,10 @@ COPY public.cliente (id, cedula, nombre_completo, direccion, celular) FROM stdin
 
 COPY public.contrato_empleado (id_contrato, id_empleado, tipo_contrato, fecha_inicio, fecha_fin, sueldo) FROM stdin;
 1	1	Indefinido	2024-01-15	2030-12-31	3000
-2	2	Temporal	2024-03-01	2024-09-01	2500
 3	3	Por Obra	2024-02-10	2025-02-10	2800
 4	4	Indefinido	2023-11-20	2033-11-20	3200
 5	5	Practicas	2024-06-01	2024-12-01	1200
+2	2	Temporal	2024-03-01	2024-09-01	2500
 \.
 
 
@@ -709,10 +711,10 @@ COPY public.contrato_servicio (id_servicio, id_cliente, tipo_servicio, fecha_ini
 
 COPY public.empleado (id, cedula, nombre, apellido, celular, email, cargo) FROM stdin;
 4	5566778899	Ana	Martinez	0998765432	ana.martinez@example.com	Contadora
-2	0987654321	Maria	Gomez	0912345678	maria.gomez@example.com	Administradora
 3	1122334455	Carlos	Rodriguez	0954321876	carlos.rodriguez@example.com	Supervisor
-5	6677889900	Martin	Lopez	0943216789	pedro.lopez@example.com	Vendedor
 1	1234567890	Juan	Perez	0987654321	juan.perez@example.com	Gerente
+2	0987654321	Maria	Gomez	0912345678	maria.gomez@example.com	Administradora
+5	6677889900	Marina	Lopez	0943216789	pedro.lopez@example.com	Vendedor
 \.
 
 
@@ -763,7 +765,7 @@ COPY public.pagos (id_pago, id_factura, fecha, monto) FROM stdin;
 1	1	2015-12-26	15000
 2	2	2016-12-20	18000
 3	3	2018-01-03	21000
-4	4	2018-12-28	24000
+4	4	2016-06-08	250000
 5	5	2020-01-03	25500
 \.
 
@@ -776,8 +778,8 @@ COPY public.reporte_servicio (id_reporte, id_cliente, problema, fecha_reporte, e
 1	1	Baja presi¢n de agua en la zona residencial	2018-05-15	Solucionado
 2	2	Fuga detectada en la red de distribuci¢n	2018-10-10	Pendiente
 3	3	Problema con la calidad del agua potable	2018-04-25	Solucionado
-4	4	Contador de agua da¤ado en domicilio	2018-04-30	Solucionado
-5	5	Deben limpiar los tanques de almacenamiento, llega agua con part¡culas	2018-05-05	Pendiente
+5	5	Deben limpiar los tanques de almacenamiento, llega agua con partículas	2018-05-05	Pendiente
+4	4	Contador de agua dañado en domicilio	2018-04-30	Solucionado
 \.
 
 
@@ -785,8 +787,11 @@ COPY public.reporte_servicio (id_reporte, id_cliente, problema, fecha_reporte, e
 -- Data for Name: usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.usuarios (id, nombre_completo, correo, contrasena, usuario) FROM stdin;
-8	Daniel	daniel@xmail.com	1234	dann
+COPY public.usuarios (id, nombre_completo, correo, contrasena, usuario, rol, token_recuperacion) FROM stdin;
+9	Esteban	est@xmail.com	1234	Esteban	supervisor	\N
+10	Daniel	d@d.d	1234	rex	\N	\N
+13	Daniel	d@d.e	$2y$10$HTJoxora5Z7yBhAWMU5QX.rLjzNn3rvph1WNY7VWLE97NhIX/7hBe	Dann	supervisor	\N
+8	Daniel	danialegria00@hotmail.com	$2y$10$PIyHm7qbFK0ZpWUP8.aZx.Q1C5uZJyQYPS2IuA4q4NOuQuOSQJ8Ny	dann	administrador	ec6950a45f74e97d536bfd2da4475789bcf894c64eb9844b175e6b9378cd45c9
 \.
 
 
@@ -829,7 +834,7 @@ SELECT pg_catalog.setval('public.contrato_servicio_id_servicio_seq', 9, true);
 -- Name: empleado_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.empleado_id_seq', 17, true);
+SELECT pg_catalog.setval('public.empleado_id_seq', 18, true);
 
 
 --
@@ -843,7 +848,7 @@ SELECT pg_catalog.setval('public.factura_id_cliente_seq', 1, false);
 -- Name: factura_id_factura_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.factura_id_factura_seq', 8, true);
+SELECT pg_catalog.setval('public.factura_id_factura_seq', 9, true);
 
 
 --
@@ -899,14 +904,14 @@ SELECT pg_catalog.setval('public.reporte_servicio_id_cliente_seq', 1, false);
 -- Name: reporte_servicio_id_reporte_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.reporte_servicio_id_reporte_seq', 7, true);
+SELECT pg_catalog.setval('public.reporte_servicio_id_reporte_seq', 9, true);
 
 
 --
 -- Name: usuarios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.usuarios_id_seq', 8, true);
+SELECT pg_catalog.setval('public.usuarios_id_seq', 13, true);
 
 
 --
