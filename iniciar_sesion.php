@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 // Verifica si hay una sesión activa
@@ -13,7 +14,6 @@ if (isset($_SESSION['rol'])) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html id="ht" lang="es">
 <head>
@@ -63,17 +63,18 @@ if (isset($_SESSION['rol'])) {
                 <form action="controller/register_user.php" id="form_register" class="formulario_register" method="POST">
                     <h2>Regístrate</h2>
                     <input type="text" placeholder="Nombre completo" name="nombre" required>
-                    <input type="email" placeholder="Correo electrónico" name="correoe" required>
+                    <input type="email" placeholder="Correo electrónico" name="correoe" id="correo_registro" required>
+                    <div id="mensaje-correo" class="mensaje-error" style="display:none;">Este correo ya está en uso.</div>
                     <input type="text" placeholder="Usuario" name="usuario" required>
                     <input type="password" placeholder="Contraseña" name="pasword" required>
                     <button type="submit">Registrarse</button>
                 </form>
-                <form id="form_correo" class="formulario_correo">
+                <form id="form_correo" class="formulario_correo" action="controller/recuperar_password.php" method="POST">
                     <h2>Recupera tu contraseña</h2>
                     <p>Introduce tu correo electrónico para recibir un enlace de recuperación</p>
-                    <input type="email" placeholder="Correo electrónico" required>
+                    <input type="email" placeholder="Correo electrónico" name="correo" required>
                     <button id="go" type="submit">Confirmar</button>
-                    <button id="go-back">Volver atrás</button>                  
+                    <button id="go-back" type="button">Volver atrás</button>                  
                 </form>
             </div>
         </div>
@@ -112,6 +113,64 @@ if (isset($_SESSION['rol'])) {
             }
 
         }
+
+        document.getElementById('correo_registro').addEventListener('blur', function() {
+            const correo = this.value;
+            const mensaje = document.getElementById('mensaje-correo');
+            const input = this;
+
+            if (correo.length > 0) {
+                fetch('controller/validar_correo.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: 'correo=' + encodeURIComponent(correo)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.existe) {
+                        mensaje.style.display = 'block';
+                        input.classList.add('input-error');
+                    } else {
+                        mensaje.style.display = 'none';
+                        input.classList.remove('input-error');
+                    }
+                });
+            } else {
+                mensaje.style.display = 'none';
+                input.classList.remove('input-error');
+            }
+        });
+
+        const correoInput = document.getElementById('correo_registro');
+        const mensaje = document.getElementById('mensaje-correo');
+        const botonRegistro = document.querySelector('#form_register button[type="submit"]');
+
+        correoInput.addEventListener('blur', function() {
+            const correo = this.value;
+            if (correo.length > 0) {
+                fetch('controller/validar_correo.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: 'correo=' + encodeURIComponent(correo)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.existe) {
+                        mensaje.style.display = 'block';
+                        correoInput.classList.add('input-error');
+                        botonRegistro.disabled = true;
+                    } else {
+                        mensaje.style.display = 'none';
+                        correoInput.classList.remove('input-error');
+                        botonRegistro.disabled = false;
+                    }
+                });
+            } else {
+                mensaje.style.display = 'none';
+                correoInput.classList.remove('input-error');
+                botonRegistro.disabled = false;
+            }
+        });
     
         // Agregamos el evento al botón
         document.getElementById("btn_register").addEventListener("click", registrarUsuario);
