@@ -428,7 +428,7 @@ if (!$dbconn) {
                 echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
             } else {
                 // Consulta para obtener los detalles del contrato seleccionado
-                $sql = "SELECT * FROM contrato_empleado WHERE id_contrato = :id";
+                $sql = "SELECT ce.*, e.nombre, e.apellido FROM contrato_empleado ce INNER JOIN empleado e ON ce.id_empleado = e.id WHERE ce.id_contrato = :id";
                 $stmt = $dbconn->prepare($sql); // Preparar la consulta
 
                 $stmt->bindParam(':id', $idSeleccionado, PDO::PARAM_INT);
@@ -450,11 +450,11 @@ if (!$dbconn) {
                     echo '</tr>';
                     echo '<tr class="odd:bg-gray-100 even:bg-white">';
                     echo '<td class="px-2 py-1 text-center">' . $row['id_contrato'] . '</td>';
-                    echo '<td class="px-2 py-1 text-center">' . $row['id_empleado'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center">' . $row['id_empleado'] . ' - ' . htmlspecialchars($row['nombre']) . ' ' . htmlspecialchars($row['apellido']) . '</td>';
                     echo '<td class="px-2 py-1 text-center">' . $row['tipo_contrato'] . '</td>';
                     echo '<td class="px-2 py-1 text-center">' . $row['fecha_inicio'] . '</td>';
                     echo '<td class="px-2 py-1 text-center">' . $row['fecha_fin'] . '</td>';
-                    echo '<td class="px-2 py-1 text-center">' . $row['sueldo'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center">' . '$' . $row['sueldo'] . '</td>';
                     echo '</tr>';
                     echo '</table>';
                     echo '</form>';
@@ -478,7 +478,7 @@ if (!$dbconn) {
                 echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
             } else {
                 // Consulta para obtener los detalles del contrato seleccionado
-                $sql = "SELECT * FROM contrato_servicio WHERE id_servicio = :id";
+                $sql = "SELECT cs.*, c.nombre_completo FROM contrato_servicio cs INNER JOIN cliente c ON cs.id_cliente = c.id WHERE cs.id_servicio = :id";
                 $stmt = $dbconn->prepare($sql); // Preparar la consulta
 
                 $stmt->bindParam(':id', $idSeleccionado, PDO::PARAM_INT);
@@ -499,7 +499,7 @@ if (!$dbconn) {
                     echo '</tr>';
                     echo '<tr class="odd:bg-gray-100 even:bg-white">';
                     echo '<td class="px-2 py-1 text-center">' . $row['id_servicio'] . '</td>';
-                    echo '<td class="px-2 py-1 text-center">' . $row['id_cliente'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center">' . $row['id_cliente'] . ' - ' . htmlspecialchars($row['nombre_completo']) . '</td>';
                     echo '<td class="px-2 py-1 text-center">' . $row['fecha_inicio'] . '</td>';
                     echo '<td class="px-2 py-1 text-center">' . $row['fecha_fin'] . '</td>';
                     echo '<td class="px-2 py-1 text-center">' . $row['tipo_servicio'] . '</td>';
@@ -526,7 +526,7 @@ if (!$dbconn) {
                 echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
             } else {
                 // Consulta para obtener los detalles del medidor seleccionado
-                $sql = "SELECT * FROM medidor WHERE id_medidor = :id";
+                $sql = "SELECT m.*, c.nombre_completo FROM medidor m INNER JOIN cliente c ON m.id_cliente = c.id WHERE m.id_medidor = :id";
                 $stmt = $dbconn->prepare($sql); // Preparar la consulta
 
                 $stmt->bindParam(':id', $idSeleccionado, PDO::PARAM_INT);
@@ -545,7 +545,7 @@ if (!$dbconn) {
                     echo '</tr>';
                     echo '<tr class="odd:bg-gray-100 even:bg-white">';
                     echo '<td class="px-2 py-1 text-center">' . $row['id_medidor'] . '</td>';
-                    echo '<td class="px-2 py-1 text-center">' . $row['id_cliente'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center">' . $row['id_cliente'] . ' - ' . htmlspecialchars($row['nombre_completo']) . '</td>';
                     echo '<td class="px-2 py-1 text-center">' . $row['numero_serie'] . '</td>';
                     echo '</tr>';
                     echo '</table>';
@@ -593,8 +593,8 @@ if (!$dbconn) {
                     echo '<td class="px-2 py-1 text-center">' . $row['id_lectura'] . '</td>';
                     echo '<td class="px-2 py-1 text-center">' . $row['id_medidor'] . '</td>';
                     echo '<td class="px-2 py-1 text-center">' . $row['fecha_lectura'] . '</td>';
-                    echo '<td class="px-2 py-1 text-center">' . $row['lectura_actual'] . '</td>';
-                    echo '<td class="px-2 py-1 text-center">' . $row['lectura_anterior'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center">' . $row['lectura_actual'] . 'm³' . '</td>';
+                    echo '<td class="px-2 py-1 text-center">' . $row['lectura_anterior'] . 'm³' . '</td>';
                     echo '</tr>';
                     echo '</table>';
                     echo '</form>';
@@ -618,7 +618,7 @@ if (!$dbconn) {
                 echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
             } else {
                 // Consulta para obtener los detalles de la factura seleccionada
-                $sql = "SELECT * FROM factura WHERE id_factura = :id";
+                $sql = "SELECT f.*, c.nombre_completo FROM factura f INNER JOIN cliente c ON f.id_cliente = c.id WHERE f.id_factura = :id";
                 $stmt = $dbconn->prepare($sql); // Preparar la consulta
 
                 $stmt->bindParam(':id', $idSeleccionado, PDO::PARAM_INT);
@@ -639,10 +639,10 @@ if (!$dbconn) {
                     echo '</tr>';
                     echo '<tr class="odd:bg-gray-100 even:bg-white">';
                     echo '<td class="px-2 py-1 text-center">' . $row['id_factura'] . '</td>';
-                    echo '<td class="px-2 py-1 text-center">' . $row['id_cliente'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center">' . $row['id_cliente'] . ' - ' . htmlspecialchars($row['nombre_completo']) . '</td>';
                     echo '<td class="px-2 py-1 text-center">' . $row['fecha_aviso'] . '</td>';
                     echo '<td class="px-2 py-1 text-center">' . $row['fecha_vencimiento'] . '</td>';
-                    echo '<td class="px-2 py-1 text-center">' . $row['total'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center">' . '$' . $row['total'] . '</td>';
                     echo '</tr>';
                     echo '</table>';
                     echo '</form>';
@@ -688,7 +688,7 @@ if (!$dbconn) {
                     echo '<td class="px-2 py-1 text-center">' . $row['id_pago'] . '</td>';
                     echo '<td class="px-2 py-1 text-center">' . $row['id_factura'] . '</td>';
                     echo '<td class="px-2 py-1 text-center">' . $row['fecha'] . '</td>';
-                    echo '<td class="px-2 py-1 text-center">' . $row['monto'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center">' . '$' . $row['monto'] . '</td>';
                     echo '</tr>';
                     echo '</table>';
                     echo '</form>';
@@ -712,7 +712,7 @@ if (!$dbconn) {
                 echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
             } else {
                 // Consulta para obtener los detalles del reporte seleccionado
-                $sql = "SELECT * FROM reporte_servicio WHERE id_reporte = :id";
+                $sql = "SELECT rs.*, c.nombre_completo FROM reporte_servicio rs INNER JOIN cliente c ON rs.id_cliente = c.id WHERE rs.id_reporte = :id";
                 $stmt = $dbconn->prepare($sql); // Preparar la consulta
 
                 $stmt->bindParam(':id', $idSeleccionado, PDO::PARAM_INT);
@@ -733,7 +733,7 @@ if (!$dbconn) {
                     echo '</tr>';
                     echo '<tr class="odd:bg-gray-100 even:bg-white">';
                     echo '<td class="px-2 py-1 text-center">' . $row['id_reporte'] . '</td>';
-                    echo '<td class="px-2 py-1 text-center">' . $row['id_cliente'] . '</td>';
+                    echo '<td class="px-2 py-1 text-center">' . $row['id_cliente'] . ' - ' . htmlspecialchars($row['nombre_completo']) . '</td>';
                     echo '<td class="px-2 py-1 text-center">' . $row['problema'] . '</td>';
                     echo '<td class="px-2 py-1 text-center">' . $row['fecha_reporte'] . '</td>';
                     echo '<td class="px-2 py-1 text-center">' . $row['estado'] . '</td>';
