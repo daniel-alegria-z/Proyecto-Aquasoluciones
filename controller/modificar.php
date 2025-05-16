@@ -865,8 +865,9 @@ if (!$dbconn) {
                 clase: 'input-estilo-date'
             },
             sueldo: {
-                tipo: 'number',
+                tipo: 'text',
                 clase: 'input-estilo',
+                onkeypress: "return event.charCode >= 48 && event.charCode <= 57",
                 placeholder: 'Escribe el sueldo'
             },
             numero_serie: {
