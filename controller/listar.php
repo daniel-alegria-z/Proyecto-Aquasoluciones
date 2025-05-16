@@ -112,7 +112,7 @@ if (!$dbconn) {
             if (!$dbconn) {
                 echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
             } else {
-                $sql = "SELECT * FROM contrato_empleado;";
+                $sql = "SELECT contrato_empleado.*, empleado.nombre, empleado.apellido FROM contrato_empleado INNER JOIN empleado ON contrato_empleado.id_empleado = empleado.id";
                 $stmt = $dbconn->prepare($sql);
 
                 if (!$stmt->execute()) {
@@ -137,7 +137,7 @@ if (!$dbconn) {
                     foreach ($result as $row) {
                         echo '<tr class="odd:bg-gray-100 even:bg-white">';
                         echo '<td class="px-2 py-1 text-center">' . $row['id_contrato'] . '</td>';
-                        echo '<td class="px-2 py-1 text-center">' . $row['id_empleado'] . '</td>';
+                        echo '<td class="px-2 py-1 text-center">' . $row['id_empleado'] . ' - ' . htmlspecialchars($row['nombre']) . ' ' . htmlspecialchars($row['apellido']) . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['tipo_contrato'] . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['fecha_inicio'] . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['fecha_fin'] . '</td>';
@@ -158,9 +158,9 @@ if (!$dbconn) {
             if (!$dbconn) {
                 echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
             } else {
-                $sql = "SELECT * FROM contrato_servicio;";
+                $sql = "SELECT contrato_servicio.*, cliente.nombre_completo FROM contrato_servicio INNER JOIN cliente ON contrato_servicio.id_cliente = cliente.id";
                 $stmt = $dbconn->prepare($sql);
-        
+                
                 if (!$stmt->execute()) {
                     echo "Error al obtener los datos.";
                 } else {
@@ -202,7 +202,7 @@ if (!$dbconn) {
             if (!$dbconn) {
                 echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
             } else {
-                $sql = "SELECT * FROM medidor;";
+                $sql = "SELECT medidor.*, cliente.nombre_completo FROM medidor INNER JOIN cliente ON medidor.id_cliente = cliente.id";
                 $stmt = $dbconn->prepare($sql);
         
                 if (!$stmt->execute()) {
@@ -224,7 +224,7 @@ if (!$dbconn) {
                     foreach ($result as $row) {
                         echo '<tr class="odd:bg-gray-100 even:bg-white">';
                         echo '<td class="px-2 py-1 text-center">' . $row['id_medidor'] . '</td>';
-                        echo '<td class="px-2 py-1 text-center">' . $row['id_cliente'] . '</td>';
+                        echo '<td class="px-2 py-1 text-center">' . $row['id_cliente'] . ' - ' . htmlspecialchars($row['nombre_completo']) . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['numero_serie'] . '</td>';
                         echo '</tr>';
                     }
@@ -286,7 +286,9 @@ if (!$dbconn) {
             if (!$dbconn) {
                 echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
             } else {
-                $sql = "SELECT * FROM factura;";
+                $sql = "SELECT factura.*, cliente.nombre_completo 
+                FROM factura 
+                INNER JOIN cliente ON factura.id_cliente = cliente.id";
                 $stmt = $dbconn->prepare($sql);
         
                 if (!$stmt->execute()) {
@@ -310,7 +312,7 @@ if (!$dbconn) {
                     foreach ($result as $row) {
                         echo '<tr class="odd:bg-gray-100 even:bg-white">';
                         echo '<td class="px-2 py-1 text-center">' . $row['id_factura'] . '</td>';
-                        echo '<td class="px-2 py-1 text-center">' . $row['id_cliente'] . '</td>';
+                        echo '<td class="px-2 py-1 text-center">' . $row['id_cliente'] . ' - ' . htmlspecialchars($row['nombre_completo']) . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['fecha_aviso'] . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['fecha_vencimiento'] . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . '$' . $row['total'] . '</td>';
@@ -372,7 +374,7 @@ if (!$dbconn) {
             if (!$dbconn) {
                 echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
             } else {
-                $sql = "SELECT * FROM reporte_servicio;";
+                $sql = "SELECT reporte_servicio.*, cliente.nombre_completo FROM reporte_servicio INNER JOIN cliente ON reporte_servicio.id_cliente = cliente.id";
                 $stmt = $dbconn->prepare($sql);
         
                 if (!$stmt->execute()) {
@@ -396,8 +398,8 @@ if (!$dbconn) {
                     foreach ($result as $row) {
                         echo '<tr class="odd:bg-gray-100 even:bg-white">';
                         echo '<td class="px-2 py-1 text-center">' . $row['id_reporte'] . '</td>';
-                        echo '<td class="px-2 py-1 text-center">' . $row['id_cliente'] . '</td>';
-                        echo '<td class="px-2 py-1 text-center">' . $row['problema'] . '</td>';
+                        echo '<td class="px-2 py-1 text-center">' . $row['id_cliente'] . ' - ' . htmlspecialchars($row['nombre_completo']) . '</td>';
+                            echo '<td class="px-2 py-1 text-center">' . $row['problema'] . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['fecha_reporte'] . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['estado'] . '</td>';
                         echo '</tr>';
