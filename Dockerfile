@@ -1,23 +1,22 @@
 FROM php:8.2-apache
 
-# Instalar dependencias del sistema
+# Instalar dependencias necesarias del sistema
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     unzip \
     git \
     curl \
-    libimap-dev \
-    libssl-dev \
+    libc-client-dev \
     libkrb5-dev \
+    libssl-dev \
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install imap \
-    && docker-php-ext-install pgsql pdo_pgsql \
-    && docker-php-ext-enable imap
+    && docker-php-ext-install pgsql pdo_pgsql
 
 # Instalar Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Copiar archivos al contenedor
+# Copiar archivos del proyecto
 COPY . /var/www/html/
 
 # Cambiar permisos
