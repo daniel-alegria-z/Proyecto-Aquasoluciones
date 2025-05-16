@@ -182,7 +182,7 @@ if (!$dbconn) {
                     foreach ($result as $row) {
                         echo '<tr class="odd:bg-gray-100 even:bg-white">';
                         echo '<td class="px-2 py-1 text-center">' . $row['id_servicio'] . '</td>';
-                        echo '<td class="px-2 py-1 text-center">' . $row['id_cliente'] . '</td>';
+                        echo '<td class="px-2 py-1 text-center">' . $row['id_cliente'] . ' - ' . htmlspecialchars($row['nombre_completo']) . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['fecha_inicio'] . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['fecha_fin'] . '</td>';
                         echo '<td class="px-2 py-1 text-center">' . $row['tipo_servicio'] . '</td>';
