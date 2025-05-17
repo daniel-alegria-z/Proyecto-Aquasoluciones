@@ -103,7 +103,7 @@ nav ul.menu li a:hover {
 /************     CONTENEDOR     *************/
 .contenedor {
   width: 100%;
-  height: 80%;
+  height: 73%;
   margin: 83px auto;
   position: relative; /* en lugar de absolute */
   background: url(../imagenes/aqua.jpeg);
@@ -293,7 +293,8 @@ nav ul.menu li a:hover {
   justify-content: space-between;
   background-color: #ffffff;
   height: 900px;
-  margin-top: -120px
+  margin-top: -150px;
+  margin-bottom: -50px;
 }
 
 .texto, .imagen {
