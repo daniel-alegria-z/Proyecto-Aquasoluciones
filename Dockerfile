@@ -29,3 +29,5 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Exponer el puerto 80 para Apache
 EXPOSE 80
+
+
