@@ -450,3 +450,66 @@ main {
     }
 }
 
+
+
+
+/* Ajustes para pantallas medianas */
+@media screen and (max-width: 600px) {
+    .mensaje_registro {
+        top: 358px;
+        left: 46.5%;
+        transform: translateX(-50%);
+        font-size: 13px;
+        padding: 1em 1em;
+        max-width: 95vw;
+    }
+    
+    .mensaje-xx {
+        top: 357px;
+        left: 46.6%;
+        transform: translateX(-50%);
+        font-size: 14px;
+        padding: 1em 1em;
+        max-width: 98vw;
+    }
+
+    .mensaje-sesion {
+        top: 357px;
+        left: 46.3%;
+        transform: translateX(-50%);
+        font-size: 17px;
+        padding: 1em 1em;
+        max-width: 98vw;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media screen and (max-width: 400px) {
+    .mensaje_registro {
+        top: 360px;
+        left: 46.5%;
+        transform: translateX(-50%);
+        font-size: 11.5px;
+        padding: 1em 1em;
+        max-width: 98vw;
+    }
+    
+    .mensaje-xx {
+        top: 357px;
+        left: 46.3%;
+        transform: translateX(-50%);
+        font-size: 13px;
+        padding: 1em 1em;
+        max-width: 98vw;
+    }
+    
+    .mensaje-sesion {
+        top: 357px;
+        left: 46.3%;
+        transform: translateX(-50%);
+        font-size: 15px;
+        padding: 1em 1em;
+        max-width: 98vw;
+    }
+    
+}
