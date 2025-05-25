@@ -50,6 +50,8 @@ function anchoPage() {
         formulario_register.style.display = "none";
         formulario_correo.style.display = "none";
     } else if (estadoFormulario === "register") {
+        caja_trasera_register.style.opacity = "0";
+        caja_trasera_login.style.opacity = "1";
         formulario_login.style.display = "none";
         formulario_register.style.display = "flex";
         formulario_correo.style.display = "none";
