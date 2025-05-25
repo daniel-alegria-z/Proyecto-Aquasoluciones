@@ -323,7 +323,7 @@ main {
         margin-top: 50px;
         padding: 10px;
         width: 100%;
-        margin-left: 39px;
+        margin-left: 13%;
         padding: auto;
     }
 
@@ -423,9 +423,7 @@ main {
         padding: 10px 20px;
         text-align: center;
         box-sizing: content-box;
-        margin-left: 325px;
-        margin-top: 275px;
-        
+        margin-left: 109%;        
     }
 
     #form_correo p{
@@ -447,6 +445,24 @@ main {
     
     #form_correo #go-back{
         top: -59.5px
+    }
+
+    .mensaje_registro{
+        top: 78.8%;
+        left: 47.3%;
+        font-size: 15px;
+    }
+
+    .mensaje-xx{
+        top: 78.8%;
+        left: 47.3%;
+        font-size: 15px;
+    }
+
+    .mensaje-sesion{
+        top: 78.8%;
+        left: 47.3%;
+        font-size: 17px;
     }
 }
 
