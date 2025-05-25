@@ -4,7 +4,6 @@ document.getElementById("btn_register").addEventListener("click", registrarUsuar
 document.getElementById("passwd").addEventListener("click", confirmarCorreo);
 document.getElementById("go-back").addEventListener("click", volverAtras);
 
-window.addEventListener("resize", anchoPage);
 
 
 //Variables
@@ -15,65 +14,26 @@ var caja_trasera_login = document.getElementById("caja_trasera_login");
 var caja_trasera_register = document.getElementById("caja_trasera_register");
 var formulario_correo = document.getElementById("form_correo");
 var trasera = document.getElementById("trasera");
-var estadoFormulario = "login";
 const msg = document.getElementById("mensaje-x");
 const msg2 = document.getElementById("mensaje_sesion");
 const msg3 = document.getElementById("mensaje_registro");
 
 
-//Funciones
-function anchoPage() {
-    if (window.innerWidth > 1081) {
-        caja_trasera_login.style.display = "block";
-        caja_trasera_register.style.display = "block";
-        formulario_login.style.display = "flex";
-        formulario_register.style.display = "none";
-        formulario_correo.style.display = "none";
-        contenedor_login_register.style.left = "10px";
-        caja_trasera_login.style.opacity = "0";
-        caja_trasera_register.style.opacity = "1";
-    } else {
-        caja_trasera_register.style.display = "block";
-        caja_trasera_register.style.opacity = "1";
-        caja_trasera_login.style.opacity = "0";
-        caja_trasera_login.style.display = "none";
-        formulario_login.style.display = "flex";
-        contenedor_login_register.style.left = "10px";
-        formulario_register.style.display = "none";
-        formulario_correo.style.display = "none";
-
-    }
-
-    // Mostrar el formulario según el estado
-    if (estadoFormulario === "login") {
-        formulario_login.style.display = "flex";
-        formulario_register.style.display = "none";
-        formulario_correo.style.display = "none";
-    } else if (estadoFormulario === "register") {
-        caja_trasera_register.style.opacity = "0";
-        caja_trasera_login.style.opacity = "1";
-        formulario_login.style.display = "none";
-        formulario_register.style.display = "flex";
-        formulario_correo.style.display = "none";
-    } else if (estadoFormulario === "correo") {
-        formulario_login.style.display = "none";
-        formulario_register.style.display = "none";
-        formulario_correo.style.display = "flex";
-    }
-}
-
-anchoPage();
-
 function iniciarSesion() {
     estadoFormulario = "login";
     if (window.innerWidth > 1081) {
+        caja_trasera_login.style.display = "block";
+        caja_trasera_register.style.display = "block";
         formulario_register.style.display = "none";
+        formulario_correo.style.display = "none";
         contenedor_login_register.style.left = "10px";
         formulario_login.style.display = "flex";
         caja_trasera_register.style.opacity = "1";
         caja_trasera_login.style.opacity = "0";
     } else {
+        caja_trasera_register.style.display = "block";
         formulario_register.style.display = "none";
+        formulario_correo.style.display = "none";
         contenedor_login_register.style.left = "10px";
         formulario_login.style.display = "flex";
         caja_trasera_register.style.opacity = "1";
@@ -84,12 +44,15 @@ function iniciarSesion() {
     }
 }
 
+iniciarSesion(); // Llamada inicial para mostrar el formulario de inicio de sesión al cargar la página
+
 function registrarUsuario() {
     estadoFormulario = "register";
     if (window.innerWidth > 1081) {
         formulario_register.style.display = "flex";
         contenedor_login_register.style.left = "410px";
         formulario_login.style.display = "none";
+        formulario_correo.style.display = "none";
         caja_trasera_register.style.opacity = "0";
         caja_trasera_login.style.opacity = "1";
         msg.style.display = 'nonedisplay: block !important;';
@@ -102,6 +65,7 @@ function registrarUsuario() {
         formulario_register.style.display = "flex";
         contenedor_login_register.style.left = "10px";
         formulario_login.style.display = "none";
+        formulario_correo.style.display = "none";
         caja_trasera_register.style.opacity = "0";
         caja_trasera_login.style.opacity = "1";
         caja_trasera_register.style.display = "none";
