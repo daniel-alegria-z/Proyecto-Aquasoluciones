@@ -464,6 +464,17 @@ main {
         left: 47.3%;
         font-size: 17px;
     }
+    
+    #form_correo {
+        width: 100%; /* Ocupa todo el ancho */
+        height: 120px; /* Altura del formulario */
+        display: flex; /* Usar flexbox para alinear elementos */
+        transform: translateX(-50%);
+        margin-left: 108%;
+        margin-top: 0;
+        padding-top: 70px !important;
+        padding-bottom: 90px !important;
+    }
 }
 
 
@@ -505,6 +516,8 @@ main {
         transform: translateX(-50%);
         margin-left: 108%;
         margin-top: 0;
+        padding-top: 70px !important;
+        padding-bottom: 90px !important;
     }
 }
 
@@ -544,6 +557,8 @@ main {
         transform: translateX(-50%);
         margin-left: 106%;
         margin-top: 0;
+        padding-top: 70px !important;
+        padding-bottom: 90px !important;
     }
     
 }
