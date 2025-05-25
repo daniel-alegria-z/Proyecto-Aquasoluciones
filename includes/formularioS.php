@@ -3,7 +3,7 @@
 require '/var/www/html/controller/auth.php';
 ?>
 <!DOCTYPE html>
-<html>
+<html id="ht" lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,8 +30,8 @@ require '/var/www/html/controller/auth.php';
         </div>
         
         <!-- Ícono de cerrar sesión en el extremo derecho -->
-        <div class="absolute top-1/2 right-6 transform -translate-y-1/2 mt-[-3px]">
-            <a href="/controller/logout.php" class="text-blue-600 hover:text-red-800 text-2xl" title="Cerrar sesión">
+        <div class="absolute top-1/2 right-6 transform -translate-y-1/2 mt-[-5.5px]">
+            <a href="/controller/logout.php" class="text-blue-600 hover:text-red-800 text-2xl logout" title="Cerrar sesión">
                 <i class="fas fa-sign-out-alt"></i>
             </a>
         </div>

@@ -87,6 +87,12 @@ function registrarUsuario() {
         caja_trasera_register.style.display = "none";
         caja_trasera_login.style.display = "flex";
         caja_trasera_login.style.flexDirection = "column";
+        msg.style.display = 'nonedisplay: block !important;';
+        msg.style.opacity = "0"; 
+        msg2.style.display = 'nonedisplay: block !important;';
+        msg2.style.opacity = "0";
+        msg3.style.display = 'nonedisplay: block !important;';
+        msg3.style.opacity = "0";
     }
 
 }
@@ -112,6 +118,17 @@ function confirmarCorreo() {
         contenedor_login_register.style.left = "10px";
         formulario_login.style.display = "none";
         trasera.style.display = "none";
+        formulario_register.style.display = "none";
+        caja_trasera_register.style.opacity = "0";
+        caja_trasera_login.style.opacity = "0";
+        caja_trasera_register.style.display = "none";
+        msg.style.display = 'nonedisplay: block !important;';
+        msg.style.opacity = "0"; 
+        msg2.style.display = 'nonedisplay: block !important;';
+        msg2.style.opacity = "0";
+        msg3.style.display = 'nonedisplay: block !important;';
+        msg3.style.opacity = "0";
+        
     }
 
 }

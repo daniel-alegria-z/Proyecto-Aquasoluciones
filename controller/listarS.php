@@ -27,8 +27,8 @@ if (!$dbconn) {
                     $result = $stmt->fetchAll(PDO::FETCH_ASSOC); 
                     echo '<form id="miFormulario" action="" method="post">';
                     echo '<caption><h2 class="text-xl font-semibold text-center mb-4">Listado de Empleados</h2></caption>';
-                    echo '<div style="overflow-x: auto;">'; // Contenedor para scroll horizontal
-                    echo '<table class="table-auto border-collapse mx-auto w-full max-w-4xl text-sm" style="table-layout: fixed;">';
+                    echo '<div class="tabla-scroll">';
+                    echo '<table class="table-auto border-collapse mx-auto w-full max-w-4xl text-sm">';
                     echo '<thead>';
                     echo '<tr style="background-color: #3498db; color: white;">';
                     echo '<th class="px-2 py-1">ID</th>';
@@ -56,7 +56,7 @@ if (!$dbconn) {
         
                     echo '</tbody>';
                     echo '</table>';
-                    echo '</div>'; // Cierra el contenedor
+                    echo '</div>';
                     echo '</form>';
                 }
             }
@@ -77,6 +77,7 @@ if (!$dbconn) {
                     $result = $stmt->fetchAll(PDO::FETCH_ASSOC); 
                     echo '<form id="miFormulario" action="" method="post">';
                     echo '<caption><h2 class="text-xl font-semibold text-center mb-4">LISTADO DE CLIENTES</h2></caption>';
+                    echo '<div class="tabla-scroll">';
                     echo '<table class="table-auto border-collapse mx-auto w-full max-w-4xl text-sm">';
                     echo '<thead>';
                     echo '<tr style="background-color: #3498db; color: white;">';
@@ -101,6 +102,7 @@ if (!$dbconn) {
         
                     echo '</tbody>';
                     echo '</table>';
+                    echo '</div>';
                     echo '</form>';
                 }
             }
@@ -121,6 +123,7 @@ if (!$dbconn) {
                     $result = $stmt->fetchAll(PDO::FETCH_ASSOC); 
                     echo '<form id="miFormulario" action="" method="post">';
                     echo '<caption><h2 class="text-xl font-semibold text-center mb-4">LISTADO DE REPORTES DE SERVICIO</h2></caption>';
+                    echo '<div class="tabla-scroll">';
                     echo '<table class="table-auto border-collapse mx-auto w-full max-w-4xl text-sm">';
                     echo '<thead>';
                     echo '<tr style="background-color: #3498db; color: white;">';
@@ -145,9 +148,14 @@ if (!$dbconn) {
         
                     echo '</tbody>';
                     echo '</table>';
+                    echo '</div>';
                     echo '</form>';
                 }
             }
             break;
     }                
     }
+
+?>
+
+<link rel="stylesheet" href="assets/css/disenore.css">

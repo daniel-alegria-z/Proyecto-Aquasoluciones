@@ -134,8 +134,8 @@ if (!$dbconn) {
                     // Mostrar los detalles del registro
                     echo '<form id="miFormulario" action="" method="post">';
                     echo '<h2 class="text-xl font-semibold text-center mb-4"> Detalles del Empleado </h2>';
-                    echo '<div style="overflow-x: auto;">'; // Contenedor para scroll horizontal
-                    echo '<table class="table-auto border-collapse mx-auto w-full max-w-4xl text-sm" style="table-layout: fixed;">';
+                    echo '<div class="tabla-scroll">';
+                    echo '<table class="table-auto border-collapse mx-auto w-full max-w-4xl text-sm">';
                     echo '<thead>';
                     echo '<tr style="background-color: #3498db; color: white;">';
                     echo '<th class="px-2 py-1">ID</th>';
@@ -159,7 +159,7 @@ if (!$dbconn) {
                     echo '</tr>';
                     echo '</tbody>';
                     echo '</table>';
-                    echo '</div>'; // Cierra el contenedor
+                    echo '</div>';
                     echo '</form>';
                 } else {
                     echo "No se encontró el registro.";
@@ -194,6 +194,7 @@ if (!$dbconn) {
                     // Mostrar los detalles del registro
                     echo '<form id="miFormulario" action="" method="post">';
                     echo '<h2 class="text-xl font-semibold text-center mb-4"> Detalles del Cliente </h2>';
+                    echo '<div class="tabla-scroll">';
                     echo '<table class="table-auto border-collapse mx-auto w-full max-w-4xl text-sm">';
                     echo '<tr style="background-color: #3498db; color: white;">';
                     echo '<th class="px-2 py-1">ID</th>';
@@ -210,6 +211,7 @@ if (!$dbconn) {
                     echo '<td class="px-2 py-1 text-center">' . $row['celular'] . '</td>';
                     echo '</tr>';
                     echo '</table>';
+                    echo '</div>';
                     echo '</form>';
                 } else {
                     echo "No se encontró el registro.";
@@ -242,6 +244,7 @@ if (!$dbconn) {
                     // Mostrar los detalles del reporte
                     echo '<form id="miFormulario" action="" method="post">';
                     echo '<h2 class="text-xl font-semibold text-center mb-4"> Detalles del Reporte de Servicio </h2>';
+                    echo '<div class="tabla-scroll">';
                     echo '<table class="table-auto border-collapse mx-auto w-full max-w-4xl text-sm">';
                     echo '<tr style="background-color: #3498db; color: white;">';
                     echo '<th class="px-2 py-1">ID Reporte</th>';
@@ -258,6 +261,7 @@ if (!$dbconn) {
                     echo '<td class="px-2 py-1 text-center">' . $row['estado'] . '</td>';
                     echo '</tr>';
                     echo '</table>';
+                    echo '</div>';
                     echo '</form>';
                 } else {
                     echo "No se encontró el registro.";
@@ -268,4 +272,8 @@ if (!$dbconn) {
         }
     }
 }
+
+?>
+
+<link rel="stylesheet" href="assets/css/disenore.css">
 

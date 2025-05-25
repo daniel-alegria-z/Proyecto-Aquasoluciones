@@ -481,6 +481,15 @@ main {
         padding: 1em 1em;
         max-width: 98vw;
     }
+
+    #form_correo {
+        width: 100%; /* Ocupa todo el ancho */
+        height: 120px; /* Altura del formulario */
+        display: flex; /* Usar flexbox para alinear elementos */
+        transform: translateX(-50%);
+        margin-left: 108%;
+        margin-top: 0;
+    }
 }
 
 /* Ajustes para pantallas muy pequeñas */
@@ -510,6 +519,15 @@ main {
         font-size: 15px;
         padding: 1em 1em;
         max-width: 98vw;
+    }
+
+    #form_correo {
+        width: 100%; /* Ocupa todo el ancho */
+        height: 120px; /* Altura del formulario */
+        display: flex; /* Usar flexbox para alinear elementos */
+        transform: translateX(-50%);
+        margin-left: 106%;
+        margin-top: 0;
     }
     
 }

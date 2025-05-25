@@ -597,84 +597,8 @@ if (!$dbconn) {
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
-    <style>
+<link rel="stylesheet" href="assets/css/disenore.css">
 
-.pesos {
-    margin-left: 222px;
-    margin-bottom: 5px;
-}
-
-.input-estilo {
-    display: block;
-    margin: 0 auto; /* Centrar horizontalmente */
-    margin-left: 2px; /* Centrar horizontalmente */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    appearance: none;
-    border: 1px solid #2563eb; /* Azul */
-    border-radius: 0.375rem; /* Bordes redondeados */
-    width: 100%; /* Ancho completo */
-    padding: 0.5rem 0.75rem; /* Espaciado interno */
-    color: #374151; /* Texto gris oscuro */
-    font-size: 1rem; /* Tamaño de fuente */
-    line-height: 1.5; /* Altura de línea */
-    outline: none; /* Sin borde al enfocar */
-    transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
-    
-}
-
-.input-estilo:focus {
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* Sombra azul al enfocar */
-    border-color: #2563eb; /* Borde azul al enfocar */
-}
-
-.input-estilo-date {
-    display: block;
-    margin: 0 auto; /* Centrar horizontalmente */
-    margin-left: 280px; /* Centrar horizontalmente */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    appearance: none;
-    border: 1px solid #2563eb; /* Azul */
-    border-radius: 0.375rem; /* Bordes redondeados */
-    width: 100%; /* Ancho completo */
-    padding: 0.5rem 0.75rem; /* Espaciado interno */
-    color: #374151; /* Texto gris oscuro */
-    font-size: 1rem; /* Tamaño de fuente */
-    line-height: 1.5; /* Altura de línea */
-    outline: none; /* Sin borde al enfocar */
-    transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
-    
-}
-
-.input-estilo-date:focus {
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* Sombra azul al enfocar */
-    border-color: #2563eb; /* Borde azul al enfocar */
-}
-
-.input-estilo-pro {
-    display: block;
-    margin: 0 auto; /* Centrar horizontalmente */
-    margin-left: 0px; /* Centrar horizontalmente */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    appearance: none;
-    border: 1px solid #2563eb; /* Azul */
-    border-radius: 0.375rem; /* Bordes redondeados */
-    width: 100%; /* Ancho completo */
-    padding: 0.5rem 0.75rem; /* Espaciado interno */
-    color: #374151; /* Texto gris oscuro */
-    font-size: 1rem; /* Tamaño de fuente */
-    line-height: 1.5; /* Altura de línea */
-    outline: none; /* Sin borde al enfocar */
-    transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
-    
-}
-
-.input-estilo-pro:focus {
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* Sombra azul al enfocar */
-    border-color: #2563eb; /* Borde azul al enfocar */
-}
-
-
-</style>
 <script>
     function cargarValorActual() {
         // Obtener el ID seleccionado, el campo seleccionado y la tabla seleccionada
