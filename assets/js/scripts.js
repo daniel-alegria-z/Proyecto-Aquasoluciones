@@ -176,6 +176,9 @@ window.addEventListener('resize', function() {
         if (currentScreenType === 'desktop') {
             location.reload(); // Recarga la página solo al pasar a escritorio
         }
+         if (currentScreenType === 'mobile') {
+            location.reload(); // Recarga la página solo al pasar a escritorio
+        }
         lastScreenType = currentScreenType;
     }
 });
