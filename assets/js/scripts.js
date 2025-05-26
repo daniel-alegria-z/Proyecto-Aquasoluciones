@@ -176,9 +176,6 @@ window.addEventListener('resize', function() {
         if (currentScreenType === 'desktop') {
             location.reload(); // Recarga la página solo al pasar a escritorio
         }
-        else if (currentScreenType === 'mobile') {
-            resetFormulariosPorPantalla(); // Llama a la función para restablecer formularios al pasar a móvil
-        }
         lastScreenType = currentScreenType;
     }
 });
