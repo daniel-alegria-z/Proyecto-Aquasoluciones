@@ -20,6 +20,25 @@ if (isset($_POST['modo_select']) && $_POST['modo_select']) {
         exit;
     }
 
+    // Si es pagos, hacer JOIN para traer id_cliente y nombre
+    if ($tabla === 'factura') {
+        $sql = "SELECT factura.id_factura, factura.id_cliente, cliente.nombre_completo
+                FROM factura
+                INNER JOIN cliente ON factura.id_cliente = cliente.id";
+        $stmt = $dbconn->prepare($sql);
+
+        if ($stmt->execute()) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $value = $row['id_factura'];
+                $label = $value . ' - ' . 'Cliente: ' . $row['id_cliente'] . ' - ' . $row['nombre_completo'];
+                echo "<option value=\"$value\">$label</option>";
+            }
+        } else {
+            echo '<option>Error al ejecutar la consulta</option>';
+        }
+        exit;
+    }
+
     $sql = "SELECT * FROM $tabla";
     $stmt = $dbconn->prepare($sql);
 

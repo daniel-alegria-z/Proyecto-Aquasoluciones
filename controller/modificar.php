@@ -751,17 +751,10 @@ if (!$dbconn) {
                 clase: 'class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"',
                 tablaOrigen: 'factura',
                 campoMostrar: 'id_factura',
-                descripcion: ['id_cliente'],
+                descripcion: [],
                 cargarOpciones: true
             },
-            id_pago: {
-                tipo: 'select',
-                clase: 'class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"',
-                tablaOrigen: 'pagos',
-                campoMostrar: 'id_pago',
-                descripcion: ['id_factura'],
-                cargarOpciones: true
-            },
+    
             id_reporte: {
                 tipo: 'select',
                 clase: 'class="block mx-auto w-1/2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"',
@@ -892,6 +885,39 @@ if (!$dbconn) {
             .then(response => response.text())
             .then(data => {
                 select.innerHTML += data;
+
+                if (idSeleccionado !== "selec" && campoSeleccionado !== "selec") {
+                    // Petición para obtener el valor actual
+                    const params = new URLSearchParams();
+                    params.append('id', idSeleccionado);
+                    params.append('campo', campoSeleccionado);
+                    params.append('tabla', tablaSeleccionada);
+                    params.append('columna_id', document.getElementById('tabla_combobox').value === 'empleado' ? 'id' :
+                        document.getElementById('tabla_combobox').value === 'cliente' ? 'id' :
+                        document.getElementById('tabla_combobox').value === 'contrato_empleado' ? 'id_contrato' :
+                        document.getElementById('tabla_combobox').value === 'contrato_servicio' ? 'id_servicio' :
+                        document.getElementById('tabla_combobox').value === 'medidor' ? 'id_medidor' :
+                        document.getElementById('tabla_combobox').value === 'lectura_medidor' ? 'id_lectura' :
+                        document.getElementById('tabla_combobox').value === 'factura' ? 'id_factura' :
+                        document.getElementById('tabla_combobox').value === 'pagos' ? 'id_pago' :
+                        document.getElementById('tabla_combobox').value === 'reporte_servicio' ? 'id_reporte' : 'id'
+                    );
+
+                    fetch('controller/obtener_valor_actual.php', {
+                        method: 'POST',
+                        body: params
+                    })
+                    .then(response => response.text())
+                    .then(valorActual => {
+                        // Selecciona la opción correspondiente
+                        for (let option of select.options) {
+                            if (option.value == valorActual.trim()) {
+                                option.selected = true;
+                                break;
+                            }
+                        }
+                    });
+                }
             })
             .catch(error => {
                 console.error('Error al cargar opciones:', error);
