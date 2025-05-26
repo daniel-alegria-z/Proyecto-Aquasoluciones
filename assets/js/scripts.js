@@ -19,32 +19,6 @@ const msg2 = document.getElementById("mensaje_sesion");
 const msg3 = document.getElementById("mensaje_registro");
 
 
-function resetFormulariosPorPantalla() {
-    if (window.innerWidth > 1081) {
-        // Estado inicial escritorio
-        caja_trasera_login.style.display = "block";
-        caja_trasera_register.style.display = "block";
-        caja_trasera_register.style.opacity = "1";
-        caja_trasera_login.style.opacity = "0";
-        formulario_login.style.display = "flex";
-        formulario_register.style.display = "none";
-        formulario_correo.style.display = "none";
-        contenedor_login_register.style.left = "10px";
-    } else {
-        // Estado inicial móvil
-        caja_trasera_register.style.display = "flex";
-        caja_trasera_register.style.opacity = "1";
-        caja_trasera_register.style.flexDirection = "column";
-        caja_trasera_login.style.display = "none";
-        formulario_login.style.display = "flex";
-        formulario_register.style.display = "none";
-        formulario_correo.style.display = "none";
-        contenedor_login_register.style.left = "10px";
-        if (trasera) trasera.style.display = "block";
-    }
-    estadoFormulario = "login";
-}
-
 function iniciarSesion() {
     estadoFormulario = "login";
     if (window.innerWidth > 1081) {
