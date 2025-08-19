@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="assets/css/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="assets/js/abririmg.js"></script>
     <script src="assets/js/dise.js"></script>
 </head>
 
@@ -23,7 +22,9 @@
             <img src="assets/imagenes/logo2.png" alt="Logo AquaSoluciones">
           </a>
         </div>
+
         <div class="head2">
+          <button class="menu-togglea" id="menu-togglea"><i class="fas fa-bars"></i></button>
           <nav>
             <ul class="menua">
               <li><a href="index.html">Inicio</a></li>
@@ -42,43 +43,35 @@
 
   <div id="separador"></div>
 
-  <div class = "acercade">
-    <div class = "contenedor-izq">
-        <div class = "fila-a d_flex">
-            <div class = "col-md-8 pad_izq">
-                <section class="contenedor-acercade">
-                    <div id="carrusel2" class="carrusel">
-                    <div class="apartado-acerca">
-                        <img src ="assets/imagenes/mision.png" alt="#" />
-                    </div>  
-                    <div class="apartado-acerca">                        
-                        <img src ="assets/imagenes/vision.png" alt="#" />
-                    </div> 
-                    <div class="apartado-acerca">
-                        <img src ="assets/imagenes/politicas.png" alt="#" />
-                    </div>
-                    <div class="apartado-acerca">
-                        <img src ="assets/imagenes/objetivos.png" alt="#" />
-                    </div>
-                    </div>
-                </section>
-            </div>
-            <div class = "col-md-4">
-                <div class = "titulo">           
-                    <h2 id="estiloh3">&emsp;&emsp;Conoce sobre nosotros </h2>
-                    <br>
-                    <button class="anterior-acerca">&#8249;</button>
-                    <button class="siguiente-acerca">&#8250;</button>
-
-                    </div>
-                </div>
-        </div>    
-        
-        </div>
+<section class="acerca-de-nosotros">
+  <div class="acerca-wrapper">
+    <div class="info-acerca1"><h2>Conoce sobre nosotros</h2></div>
+    <!-- Carrusel a la izquierda -->
+    <div class="carrusel" id="carrusel-acerca">
+      <div class="item">
+        <img src="assets/imagenes/mision.png" alt="Misión" />
+      </div>
+      <div class="item">
+        <img src="assets/imagenes/vision.png" alt="Visión" />
+      </div>
+      <div class="item">
+        <img src="assets/imagenes/politicas.png" alt="Políticas" />
+      </div>
+      <div class="item">
+        <img src="assets/imagenes/objetivos.png" alt="Objetivos" />
+      </div>
     </div>
 
-
-  <br><br><br><br><br><br><br>
+    <!-- Título + Botones a la derecha -->
+    <div class="info-acerca">
+      <h2>Conoce sobre nosotros</h2>
+      <div class="botones-carrusel">
+        <button class="anterior-acerca" aria-label="Anterior">&#8249;</button>
+        <button class="siguiente-acerca" aria-label="Siguiente">&#8250;</button>
+      </div>
+    </div>
+  </div>
+</section>
 
   <footer>
     <div class="contenido">
@@ -129,5 +122,40 @@
     </div>
   </footer>
 
+  <script>
+    const toggleBtn = document.getElementById('menu-togglea');
+    const menu = document.querySelector('.menua');
+
+    toggleBtn.addEventListener('click', () => {
+      menu.classList.toggle('show');
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const carruselAc = document.getElementById('carrusel-acerca');
+      const anteriorAc = document.querySelector('.anterior-acerca');
+      const siguienteAc = document.querySelector('.siguiente-acerca');
+
+      let currentIndex = 0;
+
+      anteriorAc.addEventListener('click', () => {
+        currentIndex = Math.max(currentIndex - 1, 0);
+        scrollToCurrent();
+      });
+
+      siguienteAc.addEventListener('click', () => {
+        currentIndex = Math.min(currentIndex + 1, carruselAc.children.length - 1);
+        scrollToCurrent();
+      });
+
+      function scrollToCurrent() {
+        const item = carruselAc.children[currentIndex];
+        carruselAc.scrollTo({
+          left: item.offsetLeft,
+          behavior: 'smooth'
+        });
+      }
+    });
+  </script>
 </body>
 </html>

@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['correo'])) {
         // Define el enlace dependiendo del entorno
         $enlace = "http://localhost:8080/includes/recuperar_form.php?token=$token";
         if (MAIL_ENV !== 'local') {
-            $enlace = "https://www.aquasoluciones.software/includes/recuperar_form.php?token=$token";
+            $enlace = "https://aquasoluciones.onrender.com/includes/recuperar_form.php?token=$token";
         }
 
         $asunto = "🔐 Recupera tu contraseña";
@@ -109,24 +109,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['correo'])) {
 
             $mail->send();
 
-            if ($mail->send()) {
-              // Guardar en carpeta "Enviados"
-              $imapStream = imap_open(
-                  '{imap.titan.email:993/ssl/novalidate-cert}Sent',
-                  MAIL_USERNAME,
-                  MAIL_PASSWORD
-              );
-
-              if ($imapStream) {
-                  imap_append($imapStream,
-                      '{imap.titan.email:993/ssl/novalidate-cert}Sent',
-                      $mail->getSentMIMEMessage()
-                  );
-                  imap_close($imapStream);
-              } else {
-                  error_log('No se pudo guardar el correo en "Enviados"');
-              }
-          }
             echo "<script>alert('Se ha enviado un enlace de recuperación a tu correo.');window.location.href='../iniciar_sesion.php';</script>";
         } catch (Exception $e) {
             echo "<script>alert('Error al enviar el correo: {$mail->ErrorInfo}');window.location.href='../iniciar_sesion.php';</script>";
