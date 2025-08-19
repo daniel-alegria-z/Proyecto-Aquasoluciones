@@ -98,6 +98,7 @@ botonSiguienteAc.addEventListener('click', () => {
   });
 });
 
+
 botonAnterior.addEventListener('click', () => clearInterval(intervalo));
 botonSiguiente.addEventListener('click', () => clearInterval(intervalo));
 botonSiguienteAc.addEventListener('click', () => clearInterval(intervaloAc));
