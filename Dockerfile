@@ -6,12 +6,10 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     curl \
-    libc-client-dev \
     libssl-dev \
     libkrb5-dev \
-    && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
-    && docker-php-ext-install imap \
     && docker-php-ext-install pgsql pdo_pgsql \
+    && pecl install imap \
     && docker-php-ext-enable imap
 
 # Instalar Composer
@@ -29,5 +27,3 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Exponer el puerto 80 para Apache
 EXPOSE 80
-
-
