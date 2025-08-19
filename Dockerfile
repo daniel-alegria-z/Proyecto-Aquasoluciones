@@ -8,9 +8,11 @@ RUN apt-get update && apt-get install -y \
     curl \
     libssl-dev \
     libkrb5-dev \
-    && docker-php-ext-install pgsql pdo_pgsql \
-    && pecl install imap \
-    && docker-php-ext-enable imap
+    libc-client2007e-dev \
+    libpam0g-dev \
+    && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
+    && docker-php-ext-install imap \
+    && docker-php-ext-install pgsql pdo_pgsql
 
 # Instalar Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
