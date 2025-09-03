@@ -741,7 +741,7 @@ ul.link_menu li a:hover {
   .contenedor {
     margin-top: 0;
     padding-top: 60px;
-    height: auto;
+    height: 60%;
     max-height: 95%;
     background-position: center;
     background-size: cover;
@@ -754,7 +754,7 @@ ul.link_menu li a:hover {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    height: 40%;
+    height: 100%;
     padding: 70px 0;
   }
   .carrusel::-webkit-scrollbar {
@@ -792,8 +792,8 @@ ul.link_menu li a:hover {
   .contenedor2 {
     flex-direction: column;
     margin-top: 0;
-    padding: 20px;
-    height: 910px !important;
+    height: auto !important;
+    margin-bottom: 20px;
   }
 
   .contenedor2 .texto,
@@ -840,6 +840,10 @@ ul.link_menu li a:hover {
     letter-spacing: 2px;
   }
 
+  #estiloh2 {
+  text-align: center;
+  font-size: 35px;
+  }
   /* Contacto */
   .contenedor3 {
     flex-direction: column;
@@ -920,7 +924,7 @@ ul.link_menu li a:hover {
 
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 499px) {
   .contenedor {
     margin-top: 0;
     padding-top: 60px;
@@ -932,12 +936,17 @@ ul.link_menu li a:hover {
     margin-bottom: 0;
   }
 
+  .head2 nav ul.menu li a {
+    font-size: 12px;
+  }
+
   .hero{
     height: 59.5rem;
   }
 
   #acerca{
     padding-top: 15px;
+    font-size: 17;  
   }
 
   #estiloh22{
