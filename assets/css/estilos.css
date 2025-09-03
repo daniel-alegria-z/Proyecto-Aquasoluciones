@@ -599,8 +599,6 @@ h3 {
 
 .p1fo {
   padding-right: 30px;
-  padding-top: 25px;
-  font-weight: normal;
 }
 
 .p1fo {
@@ -659,7 +657,7 @@ ul.link_menu li a {
   line-height: 28px;
   display: block;
   width: -moz-max-content;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 ul.link_menu li a:hover {
