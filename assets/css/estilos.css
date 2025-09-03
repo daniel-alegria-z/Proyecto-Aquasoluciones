@@ -298,9 +298,8 @@ nav ul.menu li a:hover {
   align-items: center;
   justify-content: space-between;
   background-color: #ffffff;
-  min-height: 900px;
+  min-height: 650px;
   height: auto;
-  margin-top: -120px
 }
 
 .texto, .imagen {
@@ -392,9 +391,10 @@ nav ul.menu li a:hover {
 #estiloh22{
   text-align: center;
   font-size: 60px;
-  margin-top: 170px; 
+  margin-top: 60px; 
   font-family:"Homer Simpson UI";
   text-transform: uppercase;
+  margin-bottom: 50px
 }
 
 #fecha{
@@ -527,7 +527,7 @@ nav ul.menu li a:hover {
 }
 
 .info-contacto input[type="enviar"] {
-    background-color: #007bff;
+    background-color: #8c8c8c;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -535,7 +535,8 @@ nav ul.menu li a:hover {
     cursor: pointer;
     width: 85px;
     height: 30px;
-    margin-left: 130px;
+    margin-left: 10%;
+    text-align: center;
 }
 
 .info-contacto input[type="enviar"]:hover {
@@ -740,7 +741,6 @@ ul.link_menu li a:hover {
   .contenedor {
     margin-top: 0;
     padding-top: 60px;
-    padding-bottom: 40px;
     height: auto;
     max-height: 95%;
     background-position: center;
@@ -793,6 +793,7 @@ ul.link_menu li a:hover {
     flex-direction: column;
     margin-top: 0;
     padding: 20px;
+    height: 910px !important;
   }
 
   .contenedor2 .texto,
@@ -813,6 +814,7 @@ ul.link_menu li a:hover {
   .contenedor2 .imagen img {
     width: 100%;
     height: auto;
+    margin-top: 25px;
   }
 
   /* Galería */
@@ -821,6 +823,10 @@ ul.link_menu li a:hover {
     flex-direction: column;
     gap: 20px;
     padding: 10px;
+  }
+
+  #fila2{
+    margin-top:-10%
   }
 
   .apartado2 img {
@@ -849,6 +855,7 @@ ul.link_menu li a:hover {
     font-family: fantasy;
     font-size: 40px;
     letter-spacing: 4px;
+    margin-left: -5%;
   }
 
   .info-contacto h2 {
@@ -861,6 +868,11 @@ ul.link_menu li a:hover {
   .info-contacto input[type="enviar"] {
     width: 100%;
     margin-left: 0;
+  }
+
+  .info-contacto input[type="text"], .info-contacto input[type="email"], .info-contacto input[type="tel"]{
+    margin-left: 0 !important;
+    width: 100%
   }
 
   .mapa iframe {
@@ -898,6 +910,14 @@ ul.link_menu li a:hover {
     margin: 0 6px;
   }
 
+  .contenedor4{
+    margin-bottom: -12%
+  }
+
+  .mapa{
+    margin-top: 1%
+  }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -905,10 +925,24 @@ ul.link_menu li a:hover {
     margin-top: 0;
     padding-top: 60px;
     padding-bottom: 40px;
-    height: auto;
+    height: 27.5rem !important;
     max-height: 40%;
     background-position: center;
     background-size: cover;
+    margin-bottom: 0;
+  }
+
+  .hero{
+    height: 59.5rem;
+  }
+
+  #acerca{
+    padding-top: 15px;
+  }
+
+  #estiloh22{
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 
