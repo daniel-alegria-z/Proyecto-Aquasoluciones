@@ -316,12 +316,13 @@ nav ul.menua li.lol a:hover {
   
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 499px) {
   header.headera {
     height: 8%;
     width: 100%;
     padding: 0%;
   }
+  
   .cuadrologoa {
     display: flex;
     flex-direction: row;
@@ -330,9 +331,15 @@ nav ul.menua li.lol a:hover {
     padding: 0px 0px;
     height: 8%;
   }
+
+  .head2 nav ul.menu li a {
+    font-size: 12px;
+  }
+
   .cuadroimg2 {
     border: 2px solid hsl(200, 100%, 50%); /* azul brillante */
   }
+
   #estiloh2a {
     font-size: 30px;
   }
