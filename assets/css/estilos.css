@@ -752,7 +752,7 @@ ul.link_menu li a:hover {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    height: 100%;
+    height: auto;
     padding: 70px 0;
   }
   .carrusel::-webkit-scrollbar {
@@ -926,9 +926,8 @@ ul.link_menu li a:hover {
   .contenedor {
     margin-top: 0;
     padding-top: 60px;
-    padding-bottom: 40px;
     height: 27.5rem !important;
-    max-height: 40%;
+    max-height: 100%;
     background-position: center;
     background-size: cover;
     margin-bottom: 0;
@@ -939,7 +938,7 @@ ul.link_menu li a:hover {
   }
 
   .hero{
-    height: 59.5rem;
+    height: auto;
   }
 
   #acerca{
