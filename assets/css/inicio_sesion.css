@@ -317,7 +317,8 @@ main {
     }
 
     * {
-        box-sizing: border-box;     
+        box-sizing: border-box; 
+        text-align: center;    
     }
     main {
         margin-top: 50px;
