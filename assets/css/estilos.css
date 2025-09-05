@@ -111,7 +111,7 @@ nav ul.menu li a:hover {
 /************     CONTENEDOR     *************/
 .contenedor {
   width: 100%;
-  height: 80%;
+  height: auto;
   position: relative; /* en lugar de absolute */
   background: url(../imagenes/aqua.jpeg);
   background-repeat: no-repeat;
