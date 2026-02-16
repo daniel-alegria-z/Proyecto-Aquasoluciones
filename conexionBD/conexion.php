@@ -3,42 +3,56 @@ class ConexionBD {
     function conexionBD() {
         $databaseUrl = getenv("DATABASE_URL");
         
-        if (!$databaseUrl) {
-            die("ERROR: Variable DATABASE_URL no configurada.");
-        }
+        if ($databaseUrl) {
+            try {
+                $dbopts = parse_url($databaseUrl);
+                
+                $host = $dbopts['host'];
+                $user = $dbopts['user'];
+                $pass = $dbopts['pass'];
+                $port = $dbopts['port'] ?? 5432;
+                
+                $path = ltrim($dbopts['path'], '/');
+                $dbname = explode('?', $path)[0];
 
-        try {
-            $dbopts = parse_url($databaseUrl);
-            
-            // 1. Host completo
-            $host = $dbopts['host'];
-            
-            // 2. Extraer el Endpoint ID tal cual viene en el host (SIN quitar -pooler)
-            // Para: ep-fragrant-fog-aencuuhf-pooler.c-2...
-            // Resultado: ep-fragrant-fog-aencuuhf-pooler
-            $endpointId = explode('.', $host)[0];
+                // Extraemos el Endpoint ID (ej: ep-fragrant-fog-aencuuhf-pooler)
+                $endpointId = explode('.', $host)[0];
 
-            $user = $dbopts['user'];
-            $pass = $dbopts['pass'];
-            
-            // Limpiar nombre de la BD
-            $path = ltrim($dbopts['path'], '/');
-            $dbname = explode('?', $path)[0];
+                // MÉTODO DE PREFIJO: Unimos el endpoint al usuario con '$'
+                // Esto es lo más compatible con Neon y evita el error de 'unsupported options'
+                $userWithEndpoint = $endpointId . '$' . $user;
 
-            // 3. Construir DSN: El endpoint DEBE coincidir con el SNI (el host)
-            $dsn = "pgsql:host=$host;port=5432;dbname=$dbname;sslmode=require;options='-c endpoint=$endpointId'";
+                // DSN simplificado (Sin el parámetro options que está dando error)
+                $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;sslmode=require";
 
-            $conn = new PDO($dsn, $user, $pass, [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                PDO::ATTR_TIMEOUT => 10
-            ]);
+                $conn = new PDO($dsn, $userWithEndpoint, $pass, [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                    PDO::ATTR_TIMEOUT => 10
+                ]);
 
-            return $conn;
+                return $conn;
 
-        } catch(PDOException $e) {
-            // Si falla, detenemos y mostramos el error real
-            die("FALLO DE CONEXIÓN A NEON: " . $e->getMessage());
+            } catch(PDOException $e) {
+                error_log("FALLO DE CONEXIÓN A NEON: " . $e->getMessage());
+                return null;
+            }
+        } else {
+            // Fallback variables de entorno
+            try {
+                $host = getenv("PGHOST") ?: 'localhost';
+                $port = getenv("PGPORT") ?: '5432';
+                $db   = getenv("PGDATABASE") ?: 'tu_bd_local';
+                $user = getenv("PGUSER") ?: 'postgres';
+                $pass = getenv("PGPASSWORD") ?: '';
+
+                $dsn = "pgsql:host=$host;port=$port;dbname=$db";
+                return new PDO($dsn, $user, $pass, [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+                ]);
+            } catch(PDOException $e) {
+                return null;
+            }
         }
     }
 }
