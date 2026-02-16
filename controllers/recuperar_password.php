@@ -95,16 +95,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['correo'])) {
             try {
                 $mail->SMTPDebug = 2;
                 $mail->isSMTP();
-                $mail->Host = MAIL_HOST;
+                $mail->Host = gethostbyname(MAIL_HOST);
                 $mail->Port = MAIL_PORT;
-                if (MAIL_USERNAME) {
-                    $mail->SMTPAuth = true;
-                    $mail->Username = MAIL_USERNAME;
-                    $mail->Password = MAIL_PASSWORD;
-                }
-                if (MAIL_SMTP_SECURE) {
-                    $mail->SMTPSecure = MAIL_SMTP_SECURE;
-                }
+                $mail->isSMTP();
+                $mail->Host = gethostbyname(MAIL_HOST); // Fuerza IPv4
+                $mail->Port = MAIL_PORT;
+                $mail->SMTPAuth = true;
+                $mail->Username = MAIL_USERNAME;
+                $mail->Password = MAIL_PASSWORD;
+                $mail->SMTPSecure = MAIL_SMTP_SECURE;
+
+                // Bloque de compatibilidad SSL/TLS para contenedores
+                $mail->SMTPOptions = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    )
+                );
                 $mail->setFrom(MAIL_FROM, MAIL_FROM_NAME);
                 $mail->addAddress($correo);
                 $mail->CharSet = 'UTF-8';
