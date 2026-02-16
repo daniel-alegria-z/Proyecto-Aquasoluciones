@@ -57,7 +57,7 @@ if (isset($_SESSION['rol'])) {
                     <input type="email" placeholder="Correo Electrónico" name="correo" required>
                     <input type="password" placeholder="Contraseña" name="passwd" required>
                     <button type="submit">Ingresar</button>
-                    <p><a href="#" id="passwd">¿Olvidaste tu contraseña?</a></p>
+                    <p id="passwd"><a href="#" id="passwd">¿Olvidaste tu contraseña?</a></p>
                 </form>
 
                 <form action="/controllers/register_user.php" id="form_register" class="formulario_register" method="POST">
