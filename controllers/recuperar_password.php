@@ -93,19 +93,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['correo'])) {
 
             $mail = new PHPMailer(true);
             try {
+              // Log para depuración en Render
+                error_log("DEBUG: Entorno detectado: " . MAIL_ENV);
+                error_log("DEBUG: Intentando conectar a " . MAIL_HOST . " en puerto " . MAIL_PORT);
                 $mail->SMTPDebug = 2;
                 $mail->isSMTP();
-                $mail->Host = gethostbyname(MAIL_HOST);
-                $mail->Port = MAIL_PORT;
-                $mail->isSMTP();
-                $mail->Host = gethostbyname(MAIL_HOST); // Fuerza IPv4
+                // Forzamos IPv4 para evitar el error 101 anterior
+                $mail->Host = gethostbyname(MAIL_HOST); 
                 $mail->Port = MAIL_PORT;
                 $mail->SMTPAuth = true;
                 $mail->Username = MAIL_USERNAME;
                 $mail->Password = MAIL_PASSWORD;
-                $mail->SMTPSecure = MAIL_SMTP_SECURE;
+                $mail->SMTPSecure = MAIL_SMTP_SECURE; // Ahora será 'ssl'
+                
+                // El timeout de 10 segundos es prudente para entornos cloud
+                $mail->Timeout = 10;
 
-                // Bloque de compatibilidad SSL/TLS para contenedores
                 $mail->SMTPOptions = array(
                     'ssl' => array(
                         'verify_peer' => false,
@@ -113,6 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['correo'])) {
                         'allow_self_signed' => true
                     )
                 );
+
                 $mail->setFrom(MAIL_FROM, MAIL_FROM_NAME);
                 $mail->addAddress($correo);
                 $mail->CharSet = 'UTF-8';

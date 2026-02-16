@@ -14,10 +14,9 @@ if (MAIL_ENV === 'local') {
 } else {
      // Configuración para producción (lee de variables de entorno)
     define('MAIL_HOST', getenv('MAIL_HOST'));
-    define('MAIL_PORT', (int)getenv('MAIL_PORT'));
-    define('MAIL_USERNAME', getenv('MAIL_USERNAME'));
+    define('MAIL_PORT', (int)getenv('MAIL_PORT') ?: 465);
+    define('MAIL_SMTP_SECURE', getenv('MAIL_SMTP_SECURE') ?: 'ssl');    define('MAIL_USERNAME', getenv('MAIL_USERNAME'));
     define('MAIL_PASSWORD', getenv('MAIL_PASSWORD'));
-    define('MAIL_SMTP_SECURE', getenv('MAIL_SMTP_SECURE'));
     define('MAIL_FROM', getenv('MAIL_FROM'));
     define('MAIL_FROM_NAME', getenv('MAIL_FROM_NAME'));
 }
