@@ -1,10 +1,9 @@
-# Usamos la imagen oficial de PHP con Apache
-FROM php:8.2-apache-bullseye
+FROM php:8.2-apache-bookworm
 
-# 1. Habilitar mod_rewrite para Apache (común en apps PHP/Laravel/Slim)
+# Habilitar mod_rewrite
 RUN a2enmod rewrite
 
-# 2. Instalar dependencias del sistema y limpiar caché de apt para reducir tamaño
+# Instalar dependencias del sistema 
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     unzip \
@@ -15,8 +14,7 @@ RUN apt-get update && apt-get install -y \
     libkrb5-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# 3. Configurar e instalar extensiones de PHP
-# docker-php-ext-install crea automáticamente los archivos .ini necesarios
+# Instalar extensiones PHP
 RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install -j$(nproc) \
     imap \
@@ -24,26 +22,17 @@ RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     pdo_pgsql \
     pgsql
 
-# 4. Instalar Composer de forma global
+# Instalar Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# 5. Configurar el directorio de trabajo
+# Directorio de trabajo
 WORKDIR /var/www/html
 
-# 6. Copiar los archivos del proyecto al contenedor
+# Copiar archivos y ejecutar composer si existe
 COPY . /var/www/html/
+RUN if [ -f "composer.json" ]; then composer install --no-dev --optimize-autoloader; fi
 
-# 7. Ejecutar Composer para instalar dependencias de PHP (si tienes un composer.json)
-# Se usa --no-dev para producción y se optimiza el autoload
-RUN if [ -f "composer.json" ]; then \
-    composer install --no-dev --optimize-autoloader; \
-    fi
+# Permisos correctos
+RUN chown -R www-data:www-data /var/www/html
 
-# 8. Ajustar permisos para que Apache pueda leer/escribir correctamente
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
-
-# 9. Exponer el puerto 80 (puerto por defecto de Apache)
 EXPOSE 80
-
-# Apache se inicia automáticamente por la imagen base
