@@ -14,7 +14,7 @@ if (MAIL_ENV === 'local') {
 } else {
      // Configuración para producción (lee de variables de entorno)
     define('MAIL_HOST', getenv('MAIL_HOST'));
-    define('MAIL_PORT', getenv('MAIL_PORT'));
+    define('MAIL_PORT', (int)getenv('MAIL_PORT'));
     define('MAIL_USERNAME', getenv('MAIL_USERNAME'));
     define('MAIL_PASSWORD', getenv('MAIL_PASSWORD'));
     define('MAIL_SMTP_SECURE', getenv('MAIL_SMTP_SECURE'));
