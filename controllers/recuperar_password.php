@@ -1,6 +1,6 @@
 <?php
-require '/var/www/html/conexionBD/conexion.php';
-require '/var/www/html/controller/mail_config.php';
+require __DIR__ . '/../conexionBD/conexion.php';
+require __DIR__ . '/mail_config.php';
 require __DIR__ . '/../vendor/autoload.php'; // Ajusta si cambia tu estructura
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -109,12 +109,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['correo'])) {
 
             $mail->send();
 
-            echo "<script>alert('Se ha enviado un enlace de recuperación a tu correo.');window.location.href='../iniciar_sesion.php';</script>";
+            echo "<script>alert('Se ha enviado un enlace de recuperación a tu correo.');window.location.href='/app/iniciar_sesion.php';</script>";
         } catch (Exception $e) {
-            echo "<script>alert('Error al enviar el correo: {$mail->ErrorInfo}');window.location.href='../iniciar_sesion.php';</script>";
+            echo "<script>alert('Error al enviar el correo: {$mail->ErrorInfo}');window.location.href='/app/iniciar_sesion.php';</script>";
         }
     } else {
-        echo "<script>alert('El correo no existe en nuestra base de datos.');window.location.href='../iniciar_sesion.php';</script>";
+        echo "<script>alert('El correo no existe en nuestra base de datos.');window.location.href='/app/iniciar_sesion.php';</script>";
     }
 }
 ?>

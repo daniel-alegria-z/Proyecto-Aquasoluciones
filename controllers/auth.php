@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Verifica si el usuario está logueado
 if (!isset($_SESSION['rol'])) {
-    header("Location: ../iniciar_sesion.php");
+    header("Location: /app/iniciar_sesion.php");
     exit();
 }
 
@@ -21,6 +21,6 @@ $permisos = [
 
 // Verifica si el archivo actual está permitido para el rol del usuario
 if (!in_array($currentFile, $permisos[$rol])) {
-    header("Location: ../desautorizado.html");
+    header("Location: /pages/desautorizado.html");
     exit();
 }

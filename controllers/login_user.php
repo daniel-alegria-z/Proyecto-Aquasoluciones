@@ -1,5 +1,5 @@
 <?php
-require '../conexionBD/conexion.php';
+require __DIR__ . '/../conexionBD/conexion.php';
 session_start();
 try {
     // Validar datos de entrada
@@ -28,24 +28,24 @@ try {
 
             // Redirigir según el rol
             if ($user['rol'] === 'administrador') {
-                header("Location: ../registroadmin.php");
+                header("Location: /app/registroadmin.php");
             } elseif ($user['rol'] === 'supervisor') {
-                header("Location: ../registrosuperv.php");
+                header("Location: /app/registrosuperv.php");
             } else {                     
                 echo "<script>
                         alert('El usuario \"$nombreUsuario\" todavía no tiene un rol asignado, por favor vuelva a iniciar sesión más tarde.');
-                        window.location.href = '../iniciar_sesion.php';
+                        window.location.href = '/app/iniciar_sesion.php';
                     </script>";
             }
             exit();
         }
         else {
-        header("Location: ../iniciar_sesion.php?contraseña=incorrecta");
+        header("Location: /app/iniciar_sesion.php?contraseña=incorrecta");
         exit();
         }
     }
      else {
-        header("Location: ../iniciar_sesion.php?contraseña=incorrecta");
+        header("Location: /app/iniciar_sesion.php?contraseña=incorrecta");
         exit();
     }
 } catch (Exception $e) {

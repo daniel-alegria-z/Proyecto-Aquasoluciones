@@ -1,5 +1,5 @@
 <?php
-require '/var/www/html/conexionBD/conexion.php';
+require __DIR__ . '/../conexionBD/conexion.php';
 
 $token = $_GET['token'] ?? '';
 
@@ -16,9 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nueva_pass'])) {
     $stmt->execute();
 
     if ($stmt->rowCount() > 0) {
-        echo "<script>alert('Contraseña actualizada correctamente.');window.location.href='../iniciar_sesion.php';</script>";
+        echo "<script>alert('Contraseña actualizada correctamente.');window.location.href='/app/iniciar_sesion.php';</script>";
     } else {
-        echo "<script>alert('Token inválido o expirado.');window.location.href='../iniciar_sesion.php';</script>";
+        echo "<script>alert('Token inválido o expirado.');window.location.href='/app/iniciar_sesion.php';</script>";
     }
     exit;
 }
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nueva_pass'])) {
 </head>
 <body>
   <div class="min-h-screen flex items-center justify-center relative overflow-hidden" style="background-color: #1e73e8;">
-    <img alt="Fondo azul con textura de agua" class="absolute inset-0 w-full h-full object-cover" height="1080" src="../assets/imagenes/642457.jpg" width="1920"/>
+    <img alt="Fondo azul con textura de agua" class="absolute inset-0 w-full h-full object-cover" height="1080" src="/assets/imagenes/642457.jpg" width="1920"/>
     
     <div class="relative bg-[#1e73e8] bg-opacity-90 p-12 max-w-3xl w-full flex justify-center z-10">
       <div class="bg-[#ffffff80] rounded-xl p-10 max-w-lg w-full text-center shadow-xl"

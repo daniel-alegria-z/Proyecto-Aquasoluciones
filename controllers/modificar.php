@@ -1,7 +1,7 @@
 <?php
 
-require '/var/www/html/conexionBD/conexion.php';
-require '/var/www/html/controller/auth.php';
+require __DIR__ . '/../conexionBD/conexion.php';
+require __DIR__ . '/auth.php';
 // Crear una instancia de la clase ConexionBD
 $conexionBD = new ConexionBD();
 $dbconn = $conexionBD->conexionBD();
@@ -597,7 +597,7 @@ if (!$dbconn) {
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="assets/css/disenore.css">
+<link rel="stylesheet" href="/assets/css/disenore.css">
 
 <script>
     function cargarValorActual() {
@@ -642,7 +642,7 @@ if (!$dbconn) {
 
         // Realizar una solicitud AJAX al servidor
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'controller/obtener_valor_actual.php', true);
+        xhr.open('POST', '/controllers/obtener_valor_actual.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         xhr.onreadystatechange = function () {
@@ -878,7 +878,7 @@ if (!$dbconn) {
             formData.append('campo_mostrar', config.campoMostrar);
             formData.append('descripcion', config.descripcion.join(','));
 
-            fetch('controller/obtener_valor_actual.php', {
+            fetch('/controllers/obtener_valor_actual.php', {
                 method: 'POST',
                 body: formData
             })
@@ -903,7 +903,7 @@ if (!$dbconn) {
                         document.getElementById('tabla_combobox').value === 'reporte_servicio' ? 'id_reporte' : 'id'
                     );
 
-                    fetch('controller/obtener_valor_actual.php', {
+                    fetch('/controllers/obtener_valor_actual.php', {
                         method: 'POST',
                         body: params
                     })

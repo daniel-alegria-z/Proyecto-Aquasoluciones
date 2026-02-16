@@ -20,8 +20,8 @@ if (isset($_SESSION['rol'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AquaSoluciones</title>
-    <script defer src="assets/js/scripts.js"></script>
-    <link rel="stylesheet" href="assets/css/inicio_sesion.css">
+    <script defer src="/assets/js/scripts.js"></script>
+    <link rel="stylesheet" href="/assets/css/inicio_sesion.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 <body>
@@ -52,7 +52,7 @@ if (isset($_SESSION['rol'])) {
                 <div id="mensaje_sesion" class="mensaje-sesion">
                     Sesión cerrada exitosamente.
                 </div>
-                <form action="controller/login_user.php" id="form_login" class="formulario_login" method="POST">
+                <form action="/controllers/login_user.php" id="form_login" class="formulario_login" method="POST">
                     <h2>Iniciar sesión</h2>
                     <input type="email" placeholder="Correo Electrónico" name="correo" required>
                     <input type="password" placeholder="Contraseña" name="passwd" required>
@@ -60,7 +60,7 @@ if (isset($_SESSION['rol'])) {
                     <p><a href="#" id="passwd">¿Olvidaste tu contraseña?</a></p>
                 </form>
 
-                <form action="controller/register_user.php" id="form_register" class="formulario_register" method="POST">
+                <form action="/controllers/register_user.php" id="form_register" class="formulario_register" method="POST">
                     <h2>Regístrate</h2>
                     <input type="text" placeholder="Nombre completo" name="nombre" required>
                     <input type="email" placeholder="Correo electrónico" name="correoe" id="correo_registro" required>
@@ -69,7 +69,7 @@ if (isset($_SESSION['rol'])) {
                     <input type="password" placeholder="Contraseña" name="pasword" required>
                     <button type="submit">Registrarse</button>
                 </form>
-                <form id="form_correo" class="formulario_correo" action="controller/recuperar_password.php" method="POST">
+                <form id="form_correo" class="formulario_correo" action="/controllers/recuperar_password.php" method="POST">
                     <h2>Recupera tu contraseña</h2>
                     <p>Introduce tu correo electrónico para recibir un enlace de recuperación</p>
                     <input type="email" placeholder="Correo electrónico" name="correo" required>
@@ -120,7 +120,7 @@ if (isset($_SESSION['rol'])) {
             const input = this;
 
             if (correo.length > 0) {
-                fetch('controller/validar_correo.php', {
+                fetch('/controllers/validar_correo.php', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     body: 'correo=' + encodeURIComponent(correo)
@@ -148,7 +148,7 @@ if (isset($_SESSION['rol'])) {
         correoInput.addEventListener('blur', function() {
             const correo = this.value;
             if (correo.length > 0) {
-                fetch('controller/validar_correo.php', {
+                fetch('/controllers/validar_correo.php', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     body: 'correo=' + encodeURIComponent(correo)

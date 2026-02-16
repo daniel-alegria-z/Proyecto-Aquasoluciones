@@ -1,12 +1,12 @@
 <?php
 
-require '/var/www/html/controller/auth.php';
+require __DIR__ . '/../controllers/auth.php';
 ?>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="assets/css/estilos.css">
-<link rel="stylesheet" href="assets/css/disenore.css">
+<link rel="stylesheet" href="/assets/css/estilos.css">
+<link rel="stylesheet" href="/assets/css/disenore.css">
  
  
  <!--final formulario-->
@@ -42,9 +42,9 @@ require '/var/www/html/controller/auth.php';
         <div class="informacion">
             <h3>Información</h3>
             <ul class="link_menu">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="acerca.html">Acerca de nosotros</a></li>
-            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="/pages/index.html">Inicio</a></li>
+            <li><a href="/pages/acerca.html">Acerca de nosotros</a></li>
+            <li><a href="/pages/servicios.html">Servicios</a></li>
             </ul>
         </div>
         <div class="nuestro_diseno">

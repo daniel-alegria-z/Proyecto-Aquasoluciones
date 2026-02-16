@@ -1,5 +1,5 @@
 <?php
-require '/var/www/html/conexionBD/conexion.php';
+require __DIR__ . '/../conexionBD/conexion.php';
 
 $conexionBD = new ConexionBD();
 $dbconn = $conexionBD->conexionBD();

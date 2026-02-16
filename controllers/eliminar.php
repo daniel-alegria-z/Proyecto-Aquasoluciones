@@ -1,6 +1,6 @@
 <?php
-require '/var/www/html/conexionBD/conexion.php';
-require '/var/www/html/controller/auth.php';
+require __DIR__ . '/../conexionBD/conexion.php';
+require __DIR__ . '/auth.php';
 
 $conexionBD = new ConexionBD();
 $dbconn = $conexionBD->conexionBD();

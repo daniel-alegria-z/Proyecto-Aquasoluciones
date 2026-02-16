@@ -1,5 +1,5 @@
 <?php
-require '/var/www/html/conexionBD/conexion.php';
+require __DIR__ . '/../conexionBD/conexion.php';
 
 if (!isset($_POST['correo'])) {
     echo json_encode(['existe' => false]);

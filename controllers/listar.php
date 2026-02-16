@@ -1,7 +1,7 @@
 <?php
 
-require '/var/www/html/conexionBD/conexion.php';
-require '/var/www/html/controller/auth.php';
+require __DIR__ . '/../conexionBD/conexion.php';
+require __DIR__ . '/auth.php';
 
 // Crear una instancia de la clase ConexionBD
 $conexionBD = new ConexionBD();
@@ -431,4 +431,4 @@ if (!$dbconn) {
     }
 
 ?>
-<link rel="stylesheet" href="assets/css/disenore.css">
+<link rel="stylesheet" href="/assets/css/disenore.css">

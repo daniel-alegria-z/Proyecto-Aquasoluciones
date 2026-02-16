@@ -1,6 +1,6 @@
 <?php
-require '/var/www/html/conexionBD/conexion.php';
-require '/var/www/html/controller/auth.php';
+require __DIR__ . '/../conexionBD/conexion.php';
+require __DIR__ . '/auth.php';
 // Crear una instancia de la clase ConexionBD
 $conexionBD = new ConexionBD();
 $dbconn = $conexionBD->conexionBD();
@@ -740,7 +740,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-<link rel="stylesheet" href="assets/css/disenore.css">
+<link rel="stylesheet" href="/assets/css/disenore.css">
 
 </script>
 <script src="https://cdn.tailwindcss.com"></script>

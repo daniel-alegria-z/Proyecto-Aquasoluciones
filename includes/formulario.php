@@ -1,6 +1,6 @@
 <?php
 
-require '/var/www/html/controller/auth.php';
+require __DIR__ . '/../controllers/auth.php';
 ?>
 <!DOCTYPE html>
 <html id="ht" lang="es">
@@ -8,30 +8,30 @@ require '/var/www/html/controller/auth.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="assets/css/disenore.css">
-    <link rel="stylesheet" href="assets/css/estilos.css">
+    <link rel="stylesheet" href="/assets/css/disenore.css">
+    <link rel="stylesheet" href="/assets/css/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="assets/js/dise.js"></script>
+    <script src="/assets/js/dise.js"></script>
     <title>Registro de datos</title>
 </head>
 <body>
     <div class="Cargarpag">
-        <div class="cargar"><img src="assets/imagenes/loading.gif" alt="#"/></div>
+        <div class="cargar"><img src="/assets/imagenes/loading.gif" alt="#"/></div>
     </div>
 
     <header class="relative header2">
         <div class="cuadrologor flex justify-center">
             <div class="logor">
-                <a href="index.html">
-                    <img src="assets/imagenes/logo2.png" alt="Logo" class="h-12">
+                <a href="/pages/index.html">
+                    <img src="/assets/imagenes/logo2.png" alt="Logo" class="h-12">
                 </a>
             </div>
         </div>
         
         <!-- Ícono de cerrar sesión en el extremo derecho -->
         <div class="absolute top-1/2 right-6 transform -translate-y-1/2 mt-[-5.5px]">
-            <a href="/controller/logout.php" class="text-blue-600 hover:text-red-800 text-2xl logout" title="Cerrar sesión">
+            <a href="/controllers/logout.php" class="text-blue-600 hover:text-red-800 text-2xl logout" title="Cerrar sesión">
                 <i class="fas fa-sign-out-alt"></i>
             </a>
         </div>

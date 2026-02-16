@@ -1,5 +1,5 @@
 <?php
-require '../conexionBD/conexion.php';
+require __DIR__ . '/../conexionBD/conexion.php';
 
 try {
     // Validar datos de entrada
@@ -27,7 +27,7 @@ try {
     $stmt->execute();
 
     // Redirigir a la página de inicio de sesión con un mensaje de éxito
-    header("Location: ../iniciar_sesion.php?registro=exitoso");
+    header("Location: /app/iniciar_sesion.php?registro=exitoso");
     exit();
     
 } catch (Exception $e) {

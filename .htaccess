@@ -1,0 +1,16 @@
+<IfModule mod_dir.c>
+    DirectoryIndex index.php index.html
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    
+    # Si la solicitud es a la raíz, redirige a pages/index.html
+    RewriteRule ^/?$ pages/index.html [L]
+    
+    # Si el archivo o carpeta no existe en la raíz, intenta en pages/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.+)$ pages/$1 [L]
+</IfModule>

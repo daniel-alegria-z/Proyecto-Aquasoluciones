@@ -1,5 +1,7 @@
 FROM php:8.2-apache-bullseye
 
+# Habilitar mod_rewrite
+RUN a2enmod rewrite
 
 # Instalar dependencias necesarias del sistema
 RUN apt-get update && apt-get install -y \
@@ -30,5 +32,3 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Exponer el puerto 80 para Apache
 EXPOSE 80
-
-
