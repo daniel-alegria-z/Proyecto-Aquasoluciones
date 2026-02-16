@@ -13,8 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['correo'])) {
     $pdo = $conn->conexionBD();
 
     if (!$pdo) {
-      echo "ERROR, NO SE PUDO CONECTAR A LA BASE DE DATOS";
-    } else {
+          // Esto te dirá el último error de PHP antes de morir
+          die("Error detallado: " . error_get_last()['message']);
+      } else {
         // Verifica si el correo existe y obtiene el nombre del usuario
         $stmt = $pdo->prepare("SELECT usuario, nombre_completo FROM usuarios WHERE correo = :correo");
         $stmt->bindParam(':correo', $correo);
