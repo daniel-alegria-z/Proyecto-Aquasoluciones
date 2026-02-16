@@ -3,8 +3,20 @@ class ConexionBD {
     function conexionBD() {
         $databaseUrl = getenv("DATABASE_URL");
         
-        if (!$databaseUrl) {
-            // Fallback a variables locales
+        if ($databaseUrl) {
+            try {
+                $conn = new PDO($databaseUrl, null, null, [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_TIMEOUT => 10
+                ]);
+                return $conn;
+            } catch(PDOException $e) {
+                error_log("DB Error (Neon): " . $e->getMessage());
+                echo "Error BD: " . htmlspecialchars($e->getMessage());
+                return null;
+            }
+        } else {
+            // Fallback local
             $host = getenv("PGHOST");
             $bdname = getenv("PGDATABASE");
             $username = getenv("PGUSER");
@@ -16,18 +28,9 @@ class ConexionBD {
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 return $conn;
             } catch(PDOException $e) {
-                error_log("DB Error: " . $e->getMessage());
+                error_log("DB Error (Local): " . $e->getMessage());
                 return null;
             }
-        }
-        
-        try {
-            $conn = new PDO($databaseUrl);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $conn;
-        } catch(PDOException $e) {
-            error_log("DB Error (Neon): " . $e->getMessage());
-            return null;
         }
     }
 }
