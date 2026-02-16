@@ -93,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['correo'])) {
 
             $mail = new PHPMailer(true);
             try {
+                $mail->SMTPDebug = 2;
                 $mail->isSMTP();
                 $mail->Host = MAIL_HOST;
                 $mail->Port = MAIL_PORT;
