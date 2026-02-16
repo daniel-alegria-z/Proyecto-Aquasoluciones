@@ -5,26 +5,31 @@ class ConexionBD {
         
         if ($databaseUrl) {
             try {
-                // Parseamos la URL de Neon
+                // 1. Parsear la URL de Neon
                 $dbopts = parse_url($databaseUrl);
                 
-                // Construimos el DSN compatible con PHP
-                $dsn = sprintf("pgsql:host=%s;port=%s;dbname=%s;options='--endpoint=%s'", 
+                // 2. Extraer el Endpoint ID (es la primera parte del host)
+                // Ejemplo: ep-fragrant-fog-aencuuhf
+                $endpointId = explode('.', $dbopts['host'])[0];
+
+                // 3. Construir el DSN con las opciones requeridas por Neon
+                $dsn = sprintf(
+                    "pgsql:host=%s;port=%s;dbname=%s;sslmode=require;options='--endpoint=%s'",
                     $dbopts['host'],
                     $dbopts['port'] ?? 5432,
                     ltrim($dbopts['path'], '/'),
-                    // Neon a veces requiere el endpoint en las options si usas el pooler
-                    explode('.', $dbopts['host'])[0] 
+                    $endpointId
                 );
 
                 $conn = new PDO($dsn, $dbopts['user'], $dbopts['pass'], [
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_TIMEOUT => 10
+                    PDO::ATTR_TIMEOUT => 5
                 ]);
+
                 return $conn;
             } catch(PDOException $e) {
-                error_log("DB Error (Neon): " . $e->getMessage());
-                echo "Error BD: " . htmlspecialchars($e->getMessage());
+                error_log("Error de conexión Neon: " . $e->getMessage());
+                // Importante: No imprimas $e->getMessage() en producción porque puede exponer datos
                 return null;
             }
         } else {
